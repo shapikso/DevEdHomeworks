@@ -1,3 +1,4 @@
+// Получить строковое название дня недели по номеру дня.
 const getDayName = (x) => {
   
     switch (x) {
@@ -27,7 +28,7 @@ const getDayName = (x) => {
       }
   }
   getDayName(7)
-
+  //Найти расстояние между двумя точками в двухмерном декартовом пространстве.
   const getDistance = (xa,ya,xb,yb) => { 
       const distance = Math.sqrt( Math.pow(xb-xa,2) + Math.pow(yb-ya,2))
       return distance.toFixed(2)
@@ -137,7 +138,7 @@ const tripleDigit = (number) => {
                           
     }
 }
-
+//Вводим число(0-999), получаем строку с прописью числа.
   const toWords = (number) => {
       let word = ''
       const toWord = String(number)
@@ -263,7 +264,7 @@ const hundreds = (word) => {
                         
   }
 }
-
+// Вводим строку, которая содержит число, написанное прописью (0-999). Получить само число
 const toNumber = (word) => {
     let number = 0
     const toNumber =  word.split(' ');
