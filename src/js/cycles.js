@@ -48,3 +48,39 @@ const sumBinary = () => {
     console.log(`Зеркальное отображение числа ${number} равна: ${sum}`)
   }
   numberMirror(123)
+
+//Найти корень натурального числа с точностью до целого (рассмотреть вариант
+//последовательного подбора и метод бинарного поиска)
+
+const findSqrt = (number) => {
+    
+    let consistentSelection, binaryMethod
+    const target = Math.trunc(Math.sqrt(number))
+    //последовательного подбор
+    for (let i = 1; i <= number; i++) {
+        if (target === i ) { 
+            consistentSelection = i
+            i = number
+        } 
+    }
+    // метод бинарного поиска
+    let firstNumber = 0
+    let lastNumber = number
+    let midle
+    let flag = true
+    while (flag) {
+        midle = Math.round((lastNumber-firstNumber)/2)+firstNumber
+        if (target === midle) {
+            binaryMethod = midle
+            flag = false
+        }
+        else if (target < midle) {
+            lastNumber = midle - 1
+        }
+        else { 
+            firstNumber = midle + 1
+        }
+    }
+    return {consistentSelection,binaryMethod}
+}
+console.log(findSqrt(81))
