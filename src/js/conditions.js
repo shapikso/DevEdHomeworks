@@ -1,3 +1,4 @@
+//Если а – четное посчитать а*б, иначе а+б
 const binary = (a,b) => {
     if((a % 2) === 0) {
       return a*b;
@@ -8,7 +9,7 @@ const binary = (a,b) => {
   }
   
   console.log(binary(2,3))
-  
+  //Определить какой четверти принадлежит точка с координатами (х,у)
   const axis = (x,y) => {
   
     switch (true) {
@@ -27,7 +28,7 @@ const binary = (a,b) => {
       }
   }
   axis(-2,-5)
-  
+  //Найти суммы только положительных из трех чисел
   const sumPositive = (a,b,c) => {
     let arr = [a,b,c]
     let sum = 0
@@ -39,7 +40,7 @@ const binary = (a,b) => {
     return sum
   }
   console.log(sumPositive(-1,2,3))
-  
+  //Посчитать выражение (макс(а*б*с, а+б+с))+3
   const sumMultMax = (a,b,c) =>{ 
     if((a+b+c)>(a*b*c)){
       return (a+b+c)+3
@@ -49,7 +50,7 @@ const binary = (a,b) => {
     }
   }
   console.log(sumMultMax(1,0,3))
-  
+  //Написать программу определения оценки студента по его рейтингу, на основе следующих правил
   const mark = (mark) => {
     switch (true) {
       case mark > 19 && mark < 40:
@@ -74,3 +75,4 @@ const binary = (a,b) => {
   
   }
   mark(75)
+  

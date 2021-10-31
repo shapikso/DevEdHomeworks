@@ -1,3 +1,4 @@
+// Найти сумму четных чисел и их количество в диапазоне от 1 до 99
 const sumBinary = () => {
     let sum = 0
     let count = 0;
@@ -8,7 +9,7 @@ const sumBinary = () => {
     console.log(`Cумма всех четных элементов от 1 до 99 равна: ${sum}, а их число равно: ${count}`)
   }
   sumBinary()
-  
+  // Проверить простое ли число? (число называется простым, если оно делится только само на себя и на 1)
   const isPrimeNumber = (number) => {
     number = Math.abs(number)
     for(let i = 2; i < number; i++) {
@@ -19,7 +20,7 @@ const sumBinary = () => {
     return false
   }
   console.log(isPrimeNumber(-16))
-  
+  // Вычислить факториал числа n. n! = 1*2*…*n-1*n;
   const findFactorial = (number) => {
     let fact = 1
     for(let i = 2; i < number; i++) {
@@ -28,7 +29,7 @@ const sumBinary = () => {
     console.log(`Факториал числа ${number} равен: ${fact}`)
   }
   findFactorial(10)
-  
+  // Посчитать сумму цифр заданного числа
   const numberSum = (number) => {
     number = String(number)
     let sum = 0
@@ -38,7 +39,8 @@ const sumBinary = () => {
     console.log(`Сумма цифр числа ${number} равна: ${sum}`)
   }
   numberSum(1113)
-  
+  //Вывести число, которое является зеркальным отображением последовательности
+// цифр заданного числа, например, задано число 123, вывести 321.
   const numberMirror = (number) => {
     number = String(number)
     let sum = ''
