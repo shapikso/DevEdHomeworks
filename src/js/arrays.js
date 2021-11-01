@@ -22,7 +22,7 @@ const findMin = (arr) => {
 console.log('Минимальный элемент массива ' + findMin(randomArr))
 // Найти индекс максимального элемента массива
 const findMaxIndex = (arr) => {
-    let max = findMax(arr)
+    const max = findMax(arr);
     let index
     for (let i = 0; i < arr.length; i++) {
         if (arr[i] === max) {
@@ -34,7 +34,7 @@ const findMaxIndex = (arr) => {
 console.log('Индекс максимального элементa массива ' + findMaxIndex(randomArr))
 //Найти индекс минимального элемента массива
 const findMinIndex = (arr) => {
-    let min = findMin(arr)
+  const min = findMin(arr);
     let index
     for (let i = 0; i < arr.length; i++) {
         if (arr[i] === min) {
@@ -56,8 +56,10 @@ console.log('Cуммa элементов массива с нечетными и
 //Сделать реверс массива (массив в обратном направлении)
 const reversArr = (arr) => {
   let reversedArray =[]
-  for (let i = 0; i < arr.length; i++) {
-    reversedArray.unshift(el)
+  let index = 0;
+  for (let i = arr.length-1; i > 0; i--) {
+    reversedArray[index] = arr[i]
+    index++
   }
   return reversedArray
 }

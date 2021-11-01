@@ -1,13 +1,9 @@
 //Если а – четное посчитать а*б, иначе а+б
 const binary = (a,b) => {
-    if((a % 2) === 0) {
-      return a*b;
-    }
-    else {  
-      return a+b
-    }
+  let answer
+    ((a % 2) === 0) ? answer = a*b : answer = a+b 
+    return answer
   }
-  
   console.log(binary(2,3))
   //Определить какой четверти принадлежит точка с координатами (х,у)
   const axis = (x,y) => {
@@ -32,11 +28,11 @@ const binary = (a,b) => {
   const sumPositive = (a,b,c) => {
     let arr = [a,b,c]
     let sum = 0
-    arr.forEach( elem => {
-      if(elem > 0) {
-        sum = sum + elem
+    for (let i = 0; i < arr.length; i++) {
+      if(arr[i] > 0) {
+        sum = sum + arr[i]
       }
-    }) 
+    }
     return sum
   }
   console.log(sumPositive(-1,2,3))
@@ -67,12 +63,10 @@ const binary = (a,b) => {
       break
       case mark > 89 && mark < 101:
         console.log('A')
-      break
-         
+      break     
       default:
         console.log( 'D' );
       }
-  
   }
   mark(75)
   

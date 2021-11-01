@@ -142,18 +142,20 @@ const tripleDigit = (number) => {
   const toWords = (number) => {
       let word = ''
       const toWord = String(number)
-      if (toWord.length === 1) { 
+      switch (toWord.length) { 
+      case 1:
         word = word + singleDigit(toWord[0],true)
-      }
-      else if (toWord.length === 2) {
+        break
+      
+      case 2:
         if (toWord[0] === '1') { 
             word = word + doubleDigitExeptions(toWord[1])
         }
         else {
             word = word + doubleDigit(toWord[0])+ ' ' + singleDigit(toWord[1],false)
         }
-      }
-      else if (toWord.length === 3) {
+        break
+        case 3:
           word = word + tripleDigit(toWord[0]) + ' '
         if (toWord[1] === '1') { 
             word = word  + doubleDigitExeptions(toWord[2])
@@ -161,6 +163,7 @@ const tripleDigit = (number) => {
         else {
             word = word + doubleDigit(toWord[1]) + ' ' + singleDigit(toWord[2],false)
         }
+        break
 
     }
     return word
@@ -238,7 +241,8 @@ const tens = (word) => {
             return 80
       case 'девяносто':  
             return 90
-                        
+      default:
+            return 0                   
   }
 }
 const hundreds = (word) => { 
@@ -261,32 +265,35 @@ const hundreds = (word) => {
             return 800
       case 'девятьсот':  
             return 900
-                        
+      default:
+            return 0                  
   }
 }
 // Вводим строку, которая содержит число, написанное прописью (0-999). Получить само число
 const toNumber = (word) => {
     let number = 0
     const toNumber =  word.split(' ');
-    if (toNumber.length === 1) { 
+    switch (toNumber.length) { 
+      case 1:
       if (tensExeptions(toNumber[0])) { 
         number = tensExeptions(toNumber[0])
       }
       else {
          number = units(toNumber[0])
       }
-    }
-    else if (toNumber.length === 2) {
+      break
+      case 2:
         if (tensExeptions(toNumber[1])) { 
             number = tensExeptions(toNumber[1]) + hundreds(toNumber[0])
           }
         else {
             number = tens(toNumber[0]) + units(toNumber[1])
-         }  
-    }
-    else if (toNumber.length === 3) {
+         } 
+         break 
+      case 3:    
         number = hundreds(toNumber[0]) + tens(toNumber[1]) + units(toNumber[2])
-  }
+         break
+      }
   return number
 }
 console.log(toNumber('семьсот семнадцать'))
