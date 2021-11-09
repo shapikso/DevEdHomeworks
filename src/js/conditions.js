@@ -10,17 +10,13 @@ const binary = (a,b) => {
   
     switch (true) {
       case x > 0 && y > 0:
-        console.log('Первая четверть')
-      break
+        return 'Первая четверть'
       case x < 0 && y > 0:
-        console.log('Вторая четверть')
-      break
+        return 'Вторая четверть'
       case x < 0 && y < 0:
-        console.log('Третья четверть')
-      break
-         
+        return 'Третья четверть'
       default:
-        console.log( 'Четвертая четверть' );
+        return 'Четвертая четверть'
       }
   }
   axis(-2,-5)

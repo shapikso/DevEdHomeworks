@@ -192,8 +192,7 @@ const units = (word) => {
         case 'восемь':  
               return 8
         case 'девять':  
-              return 9
-                          
+              return 9                      
     }
 }
 const tensExeptions = (word) => { 
@@ -296,4 +295,4 @@ const toNumber = (word) => {
       }
   return number
 }
-console.log(toNumber('семьсот семнадцать'))
+console.log(toNumber('триста один'))
