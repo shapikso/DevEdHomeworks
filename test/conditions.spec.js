@@ -58,3 +58,20 @@ describe('Sum or multiplication', () => {
         
     })
 })
+describe('Sum or multiplication', () => {
+    it('Sum of elements bigger than multiplication ', () => {
+        expect(sumMultMax(3, 2,-10)).to.equal(-2);
+        expect(sumMultMax(-3, -2,-10)).to.equal(-12);
+    })
+    it('Multiplication of elements bigger than sum ', () => {
+        expect(sumMultMax(3, -2,-10)).to.equal(63);
+        expect(sumMultMax(3, 3,10)).to.equal(93);
+        
+    })
+})
+describe('Show mark', () => {
+    it('Mark E ', () => {
+        
+    })
+    
+})
