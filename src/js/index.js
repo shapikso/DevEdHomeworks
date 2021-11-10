@@ -1,3 +1,11 @@
+// 1.Составьте алгоритм, который считает, сколько времени вам нужно на
+// приготовление яиц.
+function getCookingTime (eggsAmount) {
+  let result;
+  result = Math.ceil(eggsAmount/5) * 5;
+  return result;
+  }
+ console.log(getCookingTime(9)); //returns 5
 // // 2.Получая массив чисел. Все они либо нечетные, либо четные, кроме
 // одного. Тебе нужно его найти.
 function getNumber (array) {
@@ -90,19 +98,78 @@ function getNextPalindrome(number) {
   return result;
   }
   function isNotPalindrome (number){
-    let firstPart;
-    let secondPart;
-    const arr = Array.from(String(number));
-    if(arr.length % 2 === 0){
-      firstPart = arr.slice(0,arr.length / 2 ).toString();
-      secondPart = arr.slice(arr.length / 2, arr.length).reverse().toString();
-      return firstPart === secondPart ?  false :  true
-    }
-    else{
-      firstPart = arr.slice(0,arr.length / 2  ).toString();
-      secondPart = arr.slice(arr.length / 2 + 1, arr.length).reverse().toString();
-      return firstPart === secondPart ?  false :  true
-    }
-    return false;
+    // let firstPart;
+    // let secondPart;
+    //const arr = Array.from(String(number));
+    // if(arr.length % 2 === 0){
+    //   firstPart = arr.slice(0,arr.length / 2 ).toString();
+    //   secondPart = arr.slice(arr.length / 2, arr.length).reverse().toString();
+    //   return firstPart === secondPart ?  false :  true
+    // }
+    // else{
+    //   firstPart = arr.slice(0,arr.length / 2  ).toString();
+    //   secondPart = arr.slice(arr.length / 2 + 1, arr.length).reverse().toString();
+    //   return firstPart === secondPart ?  false :  true
+    // }
+    const numberString = String(number);
+    const reversedArgument = numberString.split('').reverse().join('');
+    return numberString !== reversedArgument ? true : false;
   }
  console.log(getNextPalindrome(102));
+//  6. Создать структуру данных Set, используя объект, создать методы add,
+// remove, has
+   const objSet = { 
+     add(value) {
+       if(!Object.values(this).includes(value)){ 
+        this[this.genereteKey()] = value;
+       }
+     },
+     has(value) {
+       let result = false;
+          Object.values(this).forEach(element => {
+            if(typeof value === 'object'){
+             if(this.isEqual(JSON.stringify(element), JSON.stringify(value))){
+              result = true;
+             }
+            }
+            else {
+              if(this.isEqual(element, value)){
+                result = true;
+              }
+            }
+          })
+          return result;
+    },
+    delete(value){
+      Object.entries(this).forEach(element => {
+        if(JSON.stringify(element[1])===JSON.stringify(value)) {
+          delete this[element[0]];
+        }
+      })
+    },
+     genereteKey(){
+      return Object.keys(this).length;
+     },
+     isEqual(element,value){
+      return element === value? true : false;
+     }
+   }
+   const set = Object.create(objSet);
+   //set.genereteKey();
+   set.add(123);
+   console.log(set);
+   set.add(123);
+   console.log(set);
+   set.add('str');
+   //console.log(set.has('str'));
+   set.add({a:2,b:2});
+   console.log(set);
+   console.log(set.has('str'));
+   set.delete('str');
+   console.log(set);
+   console.log(set.has('str'));
+  
+
+
+   
+  
