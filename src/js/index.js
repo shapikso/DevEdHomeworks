@@ -108,6 +108,7 @@ function getNextPalindrome(number) {
        if(!Object.values(this).includes(value)){ 
         this[this.genereteKey()] = value;
        }
+       return this
      },
      has(value) {
        let result = false;
@@ -141,14 +142,14 @@ function getNextPalindrome(number) {
    }
    const set = Object.create(objSet);
    //set.genereteKey();
+   console.log(set.add(123));
+   //console.log(set);
    set.add(123);
-   console.log(set);
-   set.add(123);
-   console.log(set);
+   //console.log(set);
    set.add('str');
    //console.log(set.has('str'));
    set.add({a:2,b:2});
-   console.log(set);
+   //console.log(set);
    console.log(set.has('str'));
    set.delete('str');
    console.log(set);
