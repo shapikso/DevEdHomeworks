@@ -1,9 +1,7 @@
 // 1.Составьте алгоритм, который считает, сколько времени вам нужно на
 // приготовление яиц.
 function getCookingTime (eggsAmount) {
-  let result;
-  result = Math.ceil(eggsAmount/5) * 5;
-  return result;
+  return Math.ceil(eggsAmount/5) * 5;;
   }
  console.log(getCookingTime(9)); //returns 5
 // // 2.Получая массив чисел. Все они либо нечетные, либо четные, кроме
@@ -20,14 +18,13 @@ function getNumber (array) {
   return result;
   }
 function isEvenElements (array) {
-  let count = 0;
-  array.forEach(element => {
-    element % 2 === 0 ? count++ : 0 ;
-  });
+  const count = array.reduce((acc,element) => {
+     return element % 2 === 0 ? ++acc : acc
+  },0);
  return count > 1 ? true : false ;
 }
 console.log(getNumber([1, 5, 7, 9, 15, 19, 777, -15, -11, 4, 9, 23, -17])); //returns 4
-console.log(getNumber([0, 13, 8, -4, 0, -122, 12, -4, 28, 12])) //returns 13
+console.log(getNumber([0, 12, 8, -4, 0, -122, 15, -4, 28, 12])) //returns 13
 // 3. Принимая массив объектов и случайную строку. У объектов может
 // быть ключ: «title» с разными значениями. Создайте алгоритм, который
 // фильтрует массив, заданный как первый параметр, и возвращает
@@ -43,21 +40,11 @@ function findTitle (arr, str) {
   }
   },[])
 }
-function isIncludesTitle(obj,str) {
-  if (Object.keys(obj).includes('title')) {
-    return true;
-  }
-  else {
-    return false;
-  }
+function isIncludesTitle(obj) {
+    return Object.keys(obj).includes('title');
 }
 function isIncludesString(obj,str) {
-  if (obj['title'].toLowerCase().includes(str)) {
-    return true;
-  }
-  else {
-    return false;
-  }
+    return obj['title'].toLowerCase().includes(str);
 }
 let arr = [{title: 'Some title1'},
 {title:'I like JS'},
@@ -69,9 +56,8 @@ console.log(findTitle(arr,'js'));
 // строке
 function countCharacters(string) {
   const notValidKeys =' ~`!#$%^&*+=-[]\\\';,/{}|\":<>?';
-  let result;
   const arrayFromString = Array.from(string)
-  result = arrayFromString.reduce((acc,element) => {
+ const result = arrayFromString.reduce((acc,element) => {
     if (notValidKeys.includes(element)){
       return {...acc};
     }
@@ -91,8 +77,7 @@ console.log(countCharacters('a 2ab !d'));
 // положительный палиндром большего размера.
 function getNextPalindrome(number) {
   let result = ++number;
-  while (isNotPalindrome(result))
-  {
+  while (isNotPalindrome(result)) {
     result++;
   }
   return result;
