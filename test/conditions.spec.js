@@ -71,7 +71,27 @@ describe('Sum or multiplication', () => {
 })
 describe('Show mark', () => {
     it('Mark E ', () => {
-        
+        expect(mark(20)).to.equal('E');
+        expect(mark(39)).to.equal('E');
     })
-    
+    it('Mark D ', () => {
+        expect(mark(40)).to.equal('D');
+        expect(mark(59)).to.equal('D');
+    })
+    it('Mark C ', () => {
+        expect(mark(60)).to.equal('C');
+        expect(mark(74)).to.equal('C');
+    })
+    it('Mark B ', () => {
+        expect(mark(75)).to.equal('B');
+        expect(mark(89)).to.equal('B');
+    })
+    it('Mark A ', () => {
+        expect(mark(100)).to.equal('A');
+        expect(mark(92)).to.equal('A');
+    })
+    it('Mark F ', () => {
+        expect(mark(19)).to.equal('F');
+        expect(mark(8)).to.equal('F');
+    })
 })

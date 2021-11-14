@@ -46,22 +46,22 @@ const binary = (a,b) => {
   const mark = (mark) => {
     switch (true) {
       case mark > 19 && mark < 40:
-        console.log('E')
+        return 'E'
       break
       case mark > 39 && mark < 60:
-        console.log('D')
+        return'D'
       break
       case mark > 59 && mark < 75:
-        console.log('C')
+        return'C'
       break
       case mark > 74 && mark < 90:
-        console.log('B')
+        return'B'
       break
       case mark > 89 && mark < 101:
-        console.log('A')
+        return'A'
       break     
       default:
-        console.log( 'D' );
+        return 'F' 
       }
   }
   mark(75)
