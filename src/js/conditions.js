@@ -10,17 +10,13 @@ const binary = (a,b) => {
   
     switch (true) {
       case x > 0 && y > 0:
-        console.log('Первая четверть')
-      break
+        return 'Первая четверть'
       case x < 0 && y > 0:
-        console.log('Вторая четверть')
-      break
+        return 'Вторая четверть'
       case x < 0 && y < 0:
-        console.log('Третья четверть')
-      break
-         
+        return 'Третья четверть'
       default:
-        console.log( 'Четвертая четверть' );
+        return 'Четвертая четверть'
       }
   }
   axis(-2,-5)
@@ -50,22 +46,22 @@ const binary = (a,b) => {
   const mark = (mark) => {
     switch (true) {
       case mark > 19 && mark < 40:
-        console.log('E')
+        return 'E'
       break
       case mark > 39 && mark < 60:
-        console.log('D')
+        return'D'
       break
       case mark > 59 && mark < 75:
-        console.log('C')
+        return'C'
       break
       case mark > 74 && mark < 90:
-        console.log('B')
+        return'B'
       break
       case mark > 89 && mark < 101:
-        console.log('A')
+        return'A'
       break     
       default:
-        console.log( 'D' );
+        return 'F' 
       }
   }
   mark(75)

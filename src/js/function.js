@@ -3,28 +3,21 @@ const getDayName = (x) => {
   
     switch (x) {
       case 1:
-        console.log('Понедельник')
-      break
+            return 'Понедельник'
       case 2:
-        console.log('Вторник')
-      break
+            return'Вторник'
       case 3:
-        console.log('Среда')
-      break
+            return 'Среда'
       case 4:
-        console.log('Четверг')
-      break
+            return 'Четверг'
       case 5:
-        console.log('Пятница')
-      break
+            return 'Пятница'
       case 6:
-        console.log('Суббота')
-      break  
+            return 'Суббота'
       case 7:
-        console.log('Воскресение')
-      break 
+            return 'Воскресение'
       default:
-        console.log( 'Нет такого дня' )
+            return 'Нет такого дня'
       }
   }
   getDayName(7)
@@ -192,8 +185,7 @@ const units = (word) => {
         case 'восемь':  
               return 8
         case 'девять':  
-              return 9
-                          
+              return 9                      
     }
 }
 const tensExeptions = (word) => { 
@@ -296,4 +288,4 @@ const toNumber = (word) => {
       }
   return number
 }
-console.log(toNumber('семьсот семнадцать'))
+console.log(toNumber('триста один'))
