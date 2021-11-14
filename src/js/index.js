@@ -1,7 +1,7 @@
 // 1.Составьте алгоритм, который считает, сколько времени вам нужно на
 // приготовление яиц.
 function getCookingTime (eggsAmount) {
-  return Math.ceil(eggsAmount/5) * 5;;
+  return Math.ceil(eggsAmount/5) * 5;
   }
  console.log(getCookingTime(9)); //returns 5
 // // 2.Получая массив чисел. Все они либо нечетные, либо четные, кроме
@@ -55,7 +55,7 @@ console.log(findTitle(arr,'js'));
 // ключи – символы строки, значение – количество повторений символов в
 // строке
 function countCharacters(string) {
-  const notValidKeys =' ~`!#$%^&*+=-[]\\\';,/{}|\":<>?';
+  const notValidKeys =' _~`!#$%^&*+=-[]\\\';,/{}|\":<>?';
   const arrayFromString = Array.from(string)
  const result = arrayFromString.reduce((acc,element) => {
     if (notValidKeys.includes(element)){
@@ -96,9 +96,12 @@ function getNextPalindrome(number) {
     //   secondPart = arr.slice(arr.length / 2 + 1, arr.length).reverse().toString();
     //   return firstPart === secondPart ?  false :  true
     // }
+    if (number >= 10){
     const numberString = String(number);
     const reversedArgument = numberString.split('').reverse().join('');
     return numberString !== reversedArgument ? true : false;
+  }
+    return true
   }
  console.log(getNextPalindrome(102));
 //  6. Создать структуру данных Set, используя объект, создать методы add,
@@ -130,8 +133,9 @@ function getNextPalindrome(number) {
       Object.entries(this).forEach(element => {
         if(JSON.stringify(element[1])===JSON.stringify(value)) {
           delete this[element[0]];
-        }
+        }  
       })
+      return this;
     },
      genereteKey(){
       return Object.keys(this).length;
@@ -141,19 +145,20 @@ function getNextPalindrome(number) {
      }
    }
    const set = Object.create(objSet);
+   set.add(102);
    //set.genereteKey();
-   console.log(set.add(123));
-   //console.log(set);
-   set.add(123);
-   //console.log(set);
-   set.add('str');
-   //console.log(set.has('str'));
-   set.add({a:2,b:2});
-   //console.log(set);
-   console.log(set.has('str'));
-   set.delete('str');
-   console.log(set);
-   console.log(set.has('str'));
+  //  console.log(set.add(123));
+  //  //console.log(set);
+  //  set.add(123);
+  //  //console.log(set);
+    set.add('str');
+  //  //console.log(set.has('str'));
+  //  set.add({a:2,b:2});
+  //  //console.log(set);
+  //  console.log(set.has('str'));
+  //  set.delete('str');
+  //  console.log(set);
+  //  console.log(set.has('str'));
   
 
 
