@@ -67,19 +67,14 @@ let listOfPosts2 = [
     title: 'title 1',
     author:'Ivanov',
     comments: [
-    {
-    id: 1.1,
+    {id: 1.1,
     comment: 'some comment1',
     title: 'title',
-    author: 'Rimus'
-    },
-    {
-    id: 1.2,
+    author: 'Rimus'},
+    {id: 1.2,
     comment: 'some comment2',
     title: 'title' ,
-    author: 'Uncle'
-    }
-    ]
+    author: 'Uncle'}]
     },
     {
     id: 2,
@@ -122,4 +117,9 @@ let listOfPosts2 = [
     }
     ]
 
-    
+    const getQuntityPostsByAuthor = (list, autor) => { 
+
+
+        
+    }
+
