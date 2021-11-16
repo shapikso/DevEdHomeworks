@@ -117,9 +117,56 @@ let listOfPosts2 = [
     }
     ]
 
-    const getQuntityPostsByAuthor = (list, autor) => { 
-
-
-        
+    const getCount = (list, autor) => { 
+     let commentCount = 0;
+      const count = list.reduce((acc,element) => {
+            Object.keys(element).forEach(keyElement => {
+                if (keyElement === 'author' && element[keyElement] === autor) {
+                    acc++;
+                }
+                else if (keyElement === 'comments') {
+                    commentCount = commentCount + getCount(element[keyElement],autor)
+                }
+            })
+            return acc;
+        },0)
+        //console.log(commentCount);
+        return commentCount !== 0 ? {count,commentCount}: count;
     }
+   const getQuntityPostsByAuthor = (list, autor) => {
+
+    const result = getCount(list, autor)
+    if (typeof result === 'object')  {
+       const {count,commentCount} = result;
+        return `post – ${count}, comments – ${commentCount}`
+    }
+    else {
+        return `post – ${result}, comments – 0`
+    }
+   }
+    console.log(getQuntityPostsByAuthor(listOfPosts2, 'Rimus'));
+
+    
+    const complexFunction = function (arg1,arg2) {
+        return arg1+arg2;
+        }
+        const cache = function (complexFunction) {
+            const myCache = [];
+            return function(arg1,arg2) {
+                const element = complexFunction(arg1,arg2)
+                if (myCache.includes(element)) {
+                    return element
+                }
+                else {
+                    myCache.push(element)
+                    return true;
+                }
+                };
+            }
+        const cachedFunc = cache(complexFunction);
+      console.log(cachedFunc('foo', 'bar')); // complexFunction должна выполнится
+      console.log(cachedFunc('foo', 'bar')); // complexFunction не должна выполняться
+      console.log(cachedFunc('foo', 'baz'));
+// снова,должен вернуться кеш
+
 
