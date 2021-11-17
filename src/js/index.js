@@ -1,58 +1,68 @@
 const addButton = document.querySelector('.add')
 const toList = document.querySelector('.tasks')
 const inputText= document.getElementById('inp')
-const toDo = {
-  genereteId : function (){
-    return Object.keys(this).length;
-  },
-  add : function (value){ 
-    const id = this.genereteId()
-    this[id] = {id, value, done: false  }
-    return id
-  },
-  show : function () {
-    Object.values(this).forEach(element => {
-      if (typeof element === 'object'){
-        const task = document.createElement('div')
-        task.classList.add('list');
-        //console.log(element['value']);
-        task.innerHTML = 
-       `<p>${element['value']}</p>
-        <div class="divButn">
-            <button><i id="${element['id']}" class="fas fa-trash"></i></button>
-            <button><i class="fas fa-check"></i></button></div>
-      </div>`
-      toList.appendChild(task);
-       const del = document.getElementById(`${element['id']}`)
-       del.addEventListener('click', () =>{
-        task.parentNode.removeChild(task);
-       })
-      }
-    })
-  }
+let list = []
+if(!localStorage.getItem('key')){
+localStorage.setItem('key', JSON.stringify([]))
 }
 
+else {
+ list = JSON.parse(localStorage.getItem('key'))
+ console.log(list)
+}
+show(list);
+function createElement(value,id) { 
+ list.push({id, value})
+ console.log(list);
+ localStorage.setItem('key', JSON.stringify(list))
+}
+  function show (array) {
+  Object.values(array).forEach(element => {
+    if (typeof element === 'object'){
+      createList(element['id'],element['value']);
+    }
+  })
+}
+addButton.addEventListener('click',() =>{ 
+  //console.log(list[list.length-1]);
+  const id = list.length !== 0 ? list[list.length-1]['id']+1 : 0
+  createElement(inputText.value,id)
+  createList(id,inputText.value)
+  
+})
 
-addButton.addEventListener('click', () => {
+function createList(id, value) {
   const task = document.createElement('div')
-  const value = inputText.value
-  const id = toDo.add(value)
   task.classList.add('list');
   task.innerHTML = 
  `<p>${value}</p>
   <div class="divButn">
-      <button><i id="${id}" class="fas fa-trash"></i></button>
-      <button><i class="fas fa-check"></i></button></div>
+      <button><i id="${'trash' + id}" class="fas fa-trash"></i></button>
+      <button><i  id="${'check' + id}" class="fas fa-check"></i></button></div>
 </div>`
 toList.appendChild(task);
- const del = document.getElementById(`${id}`)
+ const del = document.getElementById(`${'trash' + id}`)
  del.addEventListener('click', () =>{
-  task.parentNode.removeChild(task);
-  
- })
-})
 
-function getObj() {
-  console.log(toDo);
-  console.log(Object.values(toDo))
+  list.splice(findWhatDelete(id),1);
+  localStorage.setItem('key', JSON.stringify(list))
+  task.parentNode.removeChild(task);
+ })
+ const done = document.getElementById(`${'check'+id}`);
+ done.addEventListener('click', () => {
+   if(task.classList.contains('done')){
+    task.classList.remove('done')
+   }
+   else {
+    task.classList.add('done')
+   }
+ })
+}
+
+function findWhatDelete (id){
+  let idInArray;
+  for (let i=0;i<list.length;i++){
+    if(list[i]['id'] === id){
+      return i; 
+    }}
 }

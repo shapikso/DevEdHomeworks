@@ -50,3 +50,6 @@ body{
     margin-bottom: 8px;
     padding: 0 15px;
 }
+.done {
+    text-decoration-line: line-through;
+}
