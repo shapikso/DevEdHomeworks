@@ -8,12 +8,10 @@ localStorage.setItem('key', JSON.stringify([]))
 
 else {
  list = JSON.parse(localStorage.getItem('key'))
- console.log(list)
 }
 show(list);
 function createElement(value,id) { 
  list.push({id, value})
- console.log(list);
  localStorage.setItem('key', JSON.stringify(list))
 }
   function show (array) {
@@ -23,13 +21,12 @@ function createElement(value,id) {
     }
   })
 }
-addButton.addEventListener('click',() =>{ 
-  //console.log(list[list.length-1]);
+addButton.addEventListener('click',addClick)
+function addClick() {
   const id = list.length !== 0 ? list[list.length-1]['id']+1 : 0
   createElement(inputText.value,id)
   createList(id,inputText.value)
-  
-})
+}
 
 function createList(id, value) {
   const task = document.createElement('div')
@@ -58,7 +55,6 @@ toList.appendChild(task);
    }
  })
 }
-
 function findWhatDelete (id){
   let idInArray;
   for (let i=0;i<list.length;i++){
