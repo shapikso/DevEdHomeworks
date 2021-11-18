@@ -27,9 +27,6 @@ const tickets = (person) => {
     },[])
     return cashbox ? 'YES': 'NO'
 }
-console.log(tickets([26, 25, 50, 25 ,100]));
-const k = []
-//console.log( k[3] )
 const sum = (arrayNumberOne,arrayNumberTwo) => {
     const result = []
     result[arrayNumberOne.length-1] = 0;
@@ -59,64 +56,6 @@ const getSum = (firstNumber,secondNumber) => {
     return sum(arrayNumberOne,arrayNumberTwo)
 }
 console.log(getSum('923', '123'));
-
-let listOfPosts2 = [
-    {
-    id: 1,
-    post:'some post1',
-    title: 'title 1',
-    author:'Ivanov',
-    comments: [
-    {id: 1.1,
-    comment: 'some comment1',
-    title: 'title',
-    author: 'Rimus'},
-    {id: 1.2,
-    comment: 'some comment2',
-    title: 'title' ,
-    author: 'Uncle'}]
-    },
-    {
-    id: 2,
-    post: 'some post2',
-    title: 'title',
-    author: 'Ivanov',
-    comments: [
-    {
-    id: 1.1,
-    comment: 'some comment1',
-    title: 'title 1',
-    author: 'Rimus'
-    },
-    {
-    
-    id: 1.2,
-    comment:'some comment2',
-    title: 'title 2',
-    author: 'Uncle'
-    },
-    {
-    id: 1.3,
-    comment: 'some comment3',
-    title: 'title 3',
-    author: 'Rimus'
-    }
-    ]
-    },
-    {
-    id: 3,
-    post: 'some post3',
-    title:'title 3',
-    author: 'Rimus'
-    },
-    {
-    id: 4,
-    post: 'some post4',
-    title: 'title 4',
-    author: 'Uncle'
-    }
-    ]
-
     const getCount = (list, autor) => { 
      let commentCount = 0;
       const count = list.reduce((acc,element) => {
@@ -130,11 +69,9 @@ let listOfPosts2 = [
             })
             return acc;
         },0)
-        //console.log(commentCount);
         return commentCount !== 0 ? {count,commentCount}: count;
     }
    const getQuntityPostsByAuthor = (list, autor) => {
-
     const result = getCount(list, autor)
     if (typeof result === 'object')  {
        const {count,commentCount} = result;
@@ -144,9 +81,6 @@ let listOfPosts2 = [
         return `post – ${result}, comments – 0`
     }
    }
-    console.log(getQuntityPostsByAuthor(listOfPosts2, 'Rimus'));
-
-    
     const complexFunction = function (arg1,arg2) {
         return arg1+arg2;
         }
@@ -163,10 +97,5 @@ let listOfPosts2 = [
                 }
                 };
             }
-        const cachedFunc = cache(complexFunction);
-      console.log(cachedFunc('foo', 'bar')); // complexFunction должна выполнится
-      console.log(cachedFunc('foo', 'bar')); // complexFunction не должна выполняться
-      console.log(cachedFunc('foo', 'baz'));
-// снова,должен вернуться кеш
 
 
