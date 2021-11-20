@@ -1,0 +1,19 @@
+.container {
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+}
+.list {
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+}
+.data {
+    margin-right: 10px;
+}
+.pointer {
+    margin-right: 10px;
+}
+h1 {
+    text-align: center;
+}
