@@ -140,7 +140,7 @@ toList.appendChild(task);
     }
 }
 
-
+const list1 = Object.create(listFunctions);
 // list.addToList('head');
 // console.log(list);
 

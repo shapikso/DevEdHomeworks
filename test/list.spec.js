@@ -1,15 +1,4 @@
 const list = Object.create(listFunctions);
-// console.log(list);
-
-// list.addToList('first element');
-// list.addToList('second element');
-// list.addToList('third element');
-// console.log(list.deleteElement('first element'));
-// console.log(list.findSize());
-// console.log(list.findById(2));
-// console.log(list.findIdByvalue('first element'));
-// list.addToList(['forth element','fifth element']);
-// console.log(list)
 describe('index.html', () => {
 
          let count = toList.childElementCount;
