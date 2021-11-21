@@ -15,13 +15,12 @@ const listFunctions = {
             const key = this.addLinkToTheLast(this.findHead());
             this[key] = { data: params, head: false, next: null};
         }
-        toList.innerHTML = ''
-        this.showAll(this.findHead(),0)
+        toList.innerHTML = '';
+        this.showAll(this.findHead(),0);
     },
     generateKey : function() {
        const str = Object.keys(this)[Object.keys(this).length-1]
-       const element = str.substring(str.length-1, str.length);
-       
+       const element = str.split('key')[1];
        return 'key'+ (Number(element)+1);
     },
     addLinkToTheLast : function(key) {
@@ -37,9 +36,9 @@ const listFunctions = {
         if (this[whatTodelete[2]]['next'] !== null){
         this[whatTodelete[2]]['next'] = whatTodelete[1];
         delete this[whatTodelete[0]];
-        toList.innerHTML = ''
-        this.showAll(this.findHead(),0)
-        return true
+        toList.innerHTML = '';
+        this.showAll(this.findHead(),0);
+        return true;
     } 
     return -1;
     },
@@ -48,9 +47,9 @@ const listFunctions = {
         if (this[whatTodelete[0]]['next'] === null){
         this[whatTodelete[2]]['next'] = whatTodelete[1];
         delete this[whatTodelete[0]];
-        toList.innerHTML = ''
-        this.showAll(this.findHead(),0)
-        return true
+        toList.innerHTML = '';
+        this.showAll(this.findHead(),0);
+        return true;
     } 
     return -1;
     },
@@ -64,7 +63,7 @@ const listFunctions = {
         }
     },
     findSize : function () {
-        return Object.keys(this).length
+        return Object.keys(this).length+1;
     },
     findHead : function(){
         let result = -1;
@@ -76,72 +75,84 @@ const listFunctions = {
         return result;
     },
     findById : function(id){
-        return this.findId(id,0,this.findHead())
+        return this.findId(id,0,this.findHead());
     },
     findIdByvalue : function(value) {
-        return this.findValue(value,0,this.findHead())
+        return this.findValue(value,0,this.findHead());
     },
     findValue : function(value,count,key){
         if(this[key]['data'] === value){
             return count;
         } else if(this[key]['next'] !== null){
-           return this.findValue(value,++count,this[key]['next'])
+           return this.findValue(value,++count,this[key]['next']);
         }
         return -1;
     },
     findId : function(id,count,key){
         if(count === id){
-            return this[key]['data']
+            return this[key]['data'];
         } else if(this[key]['next'] !== null){
-           return this.findId(id,++count,this[key]['next'])
+           return this.findId(id,++count,this[key]['next']);
         }
         return -1;
     },
     showAll : function(key,count) {
         if(this[key])
         {   
-            this.showInHTML(this[key],key,++count)
+            this.showInHTML(this[key],key,++count);
             this.showAll(this[key]['next'],count);
+        } else{
+            this.showNull();
         }
     },
     showInHTML : function(obj,key,count) {
-        const task = document.createElement('div')
-        let head
+        const task = document.createElement('div');
+        let head;
         obj['head'] ? head = 'Head' : head = 'Element';
         task.classList.add('element');
   task.innerHTML = 
  ` <div class="head"> <h1>${head}</h1></div>
  <div class="container">
+ <div class="mainContent">
      <div class="data">
          ${obj['data']}
      </div>
      <div class="pointer">
         ${key}
      </div>
+     </div>
      <div class="arrow">
-         ----------------->
+         ------------>
      </div>
  </div>
  <div class="number">
      <h1>Node ${count}</h1>
- </div>`
+ </div>`;
+toList.appendChild(task);
+    },
+    showNull: function() {
+    const task = document.createElement('div');
+  task.innerHTML = 
+ ` <div class="null">
+ <h1>Null</h1>
+ </div>`;
 toList.appendChild(task);
     }
 }
 
-const list = Object.create(listFunctions);
-list.addToList('head');
-console.log(list);
 
-list.addToList('first element');
-list.addToList('second element');
-list.addToList('third element');
-console.log(list.deleteElement('first element'));
-console.log(list.findSize());
-console.log(list.findById(2));
-console.log(list.findIdByvalue('first element'));
-list.addToList(['forth element','fifth element']);
-console.log(list)
+// list.addToList('head');
+// console.log(list);
+
+// list.addToList('first element');
+// list.addToList('second element');
+// list.addToList('third element');
+// console.log(list.deleteElement('first element'));
+// console.log(list.findSize());
+// console.log(list.findById(2));
+// console.log(list.findIdByvalue('first element'));
+// list.addToList(['forth element','fifth element']);
+// console.log(list)
 //list.showAll(list.findHead(),0)
 
 
