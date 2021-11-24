@@ -12,6 +12,9 @@ module.exports = {
   devServer: {
     contentBase: "./dist",
   },
+  experiments: {
+    topLevelAwait: true
+  },
   module: {
     rules: [
       {
