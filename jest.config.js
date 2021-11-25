@@ -13,7 +13,7 @@ module.exports = {
       displayName: "Browser",
       testEnvironment: "jsdom",
       rootDir: "./",
-      testMatch: ["<rootDir>/__tests__/**/*.[jt]s"],
+      testMatch: ["<rootDir>/tests/**/*.[jt]s"],
       testURL: "http://localhost",
     },
     {

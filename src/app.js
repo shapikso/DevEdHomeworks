@@ -1,10 +1,6 @@
-// import "../../common/css/normalize.css";
-// import "../../common/css/skeleton.css";
-// import "../../common/css/dark-theme.css";
 import './styles.css';
 const axios = require('axios');
 const galery = document.querySelector('.galery')
-const taskItemTemplate = document.getElementById('taskItemTemplate').innerHTML;
 const firstPage = document.getElementById('firstPage');
 const secondPage = document.getElementById('secondPage');
 const thirdPage = document.getElementById('thirdPage');
@@ -13,43 +9,46 @@ const fifthPage = document.getElementById('fifthdPage');
 const bigImg = document.querySelector('.bigImg');
 const zoomIn = document.querySelector('.zoomIn');
 const delBnt = document.querySelector('.delete-btn')
+const taskItemTemplate = document.getElementById('taskItemTemplate').innerHTML;
 
 function showBigImg(urlOfImg, id) {
   const photoPaint = document.getElementById(String(id))
-  photoPaint.addEventListener('click', () => {
-  bigImg.src = urlOfImg;
-  zoomIn.classList.remove('hidden')
-  })
+  photoPaint.addEventListener('click', () =>{
+    showBigImgClick(urlOfImg)})
+}
+function showBigImgClick(urlOfImg) {
+    bigImg.src = urlOfImg;
+    zoomIn.classList.remove('hidden')
 }
 async function axiosTest(leftPosition,rightPosition) { 
+  try{
   const response = await axios.get('https://jsonplaceholder.typicode.com/photos') 
-  console.log(leftPosition);
-  console.log(rightPosition);
-  console.log(response.data.splice(leftPosition,rightPosition));
   return response.data.slice(leftPosition,rightPosition);
+  } catch (error){
+  alert("Error");
+  return undefined;
+  }
 } 
 async function showPhotos(leftPosition,rightPosition) {
   const data = await axiosTest(leftPosition,rightPosition); 
-data.forEach(element => {
-  addTask(element);
-});
+  data.forEach(element => {
+    addPhoto(element);
+  });
 }
-function addTask(task) {
+function addPhoto(photo) {
   const html = taskItemTemplate
-    .replace("{{title}}", task.thumbnailUrl)
-    .replace("{{id}}", task.id)
+    .replace("{{title}}", photo.thumbnailUrl)
+    .replace("{{id}}", photo.id)
     const newTaskEl = htmlToElement(html);
     galery.appendChild(newTaskEl);
-    showBigImg(task.url,task.id);
+    showBigImg(photo.url,photo.id);
   }
-  function htmlToElement(html) {
+function htmlToElement(html) {
   const template = document.createElement("template");
   html = html.trim();
   template.innerHTML = html;
   return template.content.firstChild;
 }
-
-
 firstPage.addEventListener('click', () => {
   galery.innerHTML = ' ';
   firstPage.classList.add('activepage');
@@ -78,7 +77,7 @@ thirdPage.addEventListener('click', () => {
   showPhotos(42,62);
 })
 fourthPage.addEventListener('click', () => {
-  galery.innerHTML ='';
+  galery.innerHTML =' ';
   firstPage.classList.remove('activepage');
   secondPage.classList.remove('activepage');
   thirdPage.classList.remove('activepage');
@@ -87,7 +86,7 @@ fourthPage.addEventListener('click', () => {
   showPhotos(63,83);
 })
 fifthPage.addEventListener('click', () => {
-  galery.innerHTML ='';
+  galery.innerHTML =' ';
   firstPage.classList.remove('activepage');
   secondPage.classList.remove('activepage');
   thirdPage.classList.remove('activepage');
@@ -98,6 +97,8 @@ fifthPage.addEventListener('click', () => {
 delBnt.addEventListener('click',() =>{
   zoomIn.classList.add('hidden');
 })
-
-
-//console.log(data);
+module.exports = {
+  axiosTest,
+  addPhoto,
+  showBigImgClick
+};
