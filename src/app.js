@@ -2,7 +2,6 @@ import "./styles.css";
 
 class View {
   constructor () {
-    
   }
   showTask (html){
     const newTaskEl = this.view.htmlToElement(html);

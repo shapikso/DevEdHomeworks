@@ -4,10 +4,8 @@
  */
 
 module.exports = {
-  collectCoverage: true,
-  collectCoverageFrom: ["src/**/*.[jt]s?(x)"],
-  coverageDirectory: ".coverage",
   verbose: true,
+  clearMocks: true,
   projects: [
     {
       displayName: "Browser",
@@ -15,12 +13,10 @@ module.exports = {
       rootDir: "./",
       testMatch: ["<rootDir>/__tests__/**/*.[jt]s"],
       testURL: "http://localhost",
-    },
-    {
-      displayName: "Node.js",
-      testEnvironment: "node",
-      rootDir: "./",
-      testMatch: ["<rootDir>/tests/**/*.[jt]s"],
+      moduleNameMapper: {
+        "\\.(css|less|sass|scss)$": "<rootDir>/__mocks__/styleMock.js",
+        "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js",
+      },
     },
   ],
 };
