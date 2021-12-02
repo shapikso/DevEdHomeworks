@@ -25,7 +25,7 @@
       fetch("https://jsonplaceholder.typicode.com/todos/" + el.dataset.todoId, {
         method: "DELETE",
       }).then(() => {
-        el.remove();
+        this.view.deleteItemFromDom(el)
       });
     }
   };

@@ -14,5 +14,8 @@ export class View {
     toggleTaskState(el) {
       el.classList.toggle("done");
     }
+    deleteItemFromDom(el) {
+      el.remove();
+    }
   }
   //module.exports  = View;
