@@ -1,92 +1,72 @@
-// import "../../common/css/normalize.css";
-// import "../../common/css/skeleton.css";
-// import "../../common/css/dark-theme.css";
-import "./styles.css";
+ const next = document.getElementById('next')
+ const prev = document.getElementById('prev')
+ 
+ function returnParams() {
+    const current = document.querySelector('.current');
+    return {current, next : current.nextElementSibling, prev: current.previousElementSibling}
+ }
 
-const addTaskForm = document.getElementById("addTaskForm");
-const taskNameInput = document.getElementById("taskNameInput");
-const taskList = document.getElementById("taskList");
-const taskItemTemplate = document.getElementById("taskItemTemplate").innerHTML;
+ next.addEventListener('click', () => {
+   const {current,next,prev} = returnParams();
+   current.classList.remove('current');
+   current.classList.add('previous');
 
-addTaskForm.addEventListener("submit", onAddTaskFormSubmit);
-taskList.addEventListener("click", onTaskListClick);
+   if(prev){
+    prev.classList.remove('previous');
+    prev.classList.add('hidden');
+   } else {
+      const lastElement = document.querySelector('.photos').lastChild
+      lastElement.previousElementSibling.classList.add('hidden');
+      lastElement.previousElementSibling.classList.remove('previous');
+    }
 
-getList();
+   if (current.nextElementSibling){
+      next.classList.remove('next');
+      next.classList.add('current');
+    } else {
+      const startElement = document.querySelector('.photos').firstChild
+      startElement.nextElementSibling.classList.remove('next');
+      startElement.nextElementSibling.classList.add('current');
+    }
+    if (next?.nextElementSibling){
+      next.nextElementSibling.classList.remove('hidden');
+      next.nextElementSibling.classList.add('next');
+    } else {
+      const startElement = document.querySelector('.photos').firstChild
+      if (startElement.nextElementSibling.classList.contains('current')){
+        startElement.nextElementSibling.nextElementSibling.classList.remove('hidden');
+        startElement.nextElementSibling.nextElementSibling.classList.add('next');
+      } else {
+        startElement.nextElementSibling.classList.remove('hidden');
+        startElement.nextElementSibling.classList.add('next');
+      }
+    }
+   
 
-function getList() {
-  return fetch("https://jsonplaceholder.typicode.com/todos?_limit=15")
-    .then((res) => res.json())
-    .then(renderList);
-}
+ })
 
-function renderList(data) {
-  data.forEach(addTask);
-}
 
-function onAddTaskFormSubmit(event) {
-  event.preventDefault();
+ prev.addEventListener('click', () => {
+  const nextPhoto = document.querySelector('.next');
+  const currentPhoto = document.querySelector('.current');
+  const previousPhoto = document.querySelector('.previous');
 
-  submitForm();
-}
+  currentPhoto.classList.remove('current');
+  currentPhoto.classList.add('next');
+  previousPhoto.classList.remove('previous');
+  previousPhoto.classList.add('current');
 
-function onTaskListClick(event) {
-  switch (true) {
-    case event.target.classList.contains("task-item"):
-      toggleTaskState(event.target);
-      break;
-    case event.target.classList.contains("delete-btn"):
-      deleteTask(event.target.parentElement);
-      break;
-  }
-}
+  nextPhoto.classList.remove('next');
+  nextPhoto.classList.add('hidden');
+   if (previousPhoto.previousElementSibling){
+    previousPhoto.previousElementSibling.classList.remove('hidden');
+    previousPhoto.previousElementSibling.classList.add('previous');
+   } else {
+     const lastElement = document.querySelector('.photos').lastChild
+     lastElement.previousElementSibling.classList.remove('hidden');
+     lastElement.previousElementSibling.classList.add('previous');
 
-function submitForm() {
-  const task = { title: taskNameInput.value };
-  fetch("https://jsonplaceholder.typicode.com/todos/", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(task),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      task.id = data.id;
-      addTask(task);
-    });
-
-  resetForm();
-}
-
-function addTask(task) {
-  const html = taskItemTemplate
-    .replace("{{title}}", task.title)
-    .replace("{{id}}", task.id);
-
-  const newTaskEl = htmlToElement(html);
-  taskList.appendChild(newTaskEl);
-}
-
-function resetForm() {
-  addTaskForm.reset();
-}
-
-function toggleTaskState(el) {
-  el.classList.toggle("done");
-}
-
-function deleteTask(el) {
-  fetch("https://jsonplaceholder.typicode.com/todos/" + el.dataset.todoId, {
-    method: "DELETE",
-  }).then(() => {
-    el.remove();
-  });
-}
-
-function htmlToElement(html) {
-  const template = document.createElement("template");
-  html = html.trim();
-  template.innerHTML = html;
-  return template.content.firstChild;
-}
+   }
+})
+ //nextElementSibling
+ //previousElementSibling
