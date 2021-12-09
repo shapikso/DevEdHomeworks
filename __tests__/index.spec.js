@@ -1,6 +1,10 @@
-// import Slider from '../src/js/slider';
-// const slide = new Slider();
+import {Slider} from '../src/js/slider';
+
 describe('On HTML', function () {
+    let slide;
+    let current;
+    let prev;
+    let next;
     beforeAll(() => {
         document.body.innerHTML = `<div class="slider">
         <button id="prev" ><----</button>
@@ -10,7 +14,7 @@ describe('On HTML', function () {
             </div>
         
             <div class="item next" style="background-color: brown;">
-                <img src="../src/img/74zqb76zu5481.jpg">
+                <img src="../src/img/74zqb76zu5481.jpg" id="picture">
             </div>
 
             <div class="item hidden" style="background-color: rgb(42, 165, 69);">
@@ -39,28 +43,43 @@ describe('On HTML', function () {
         <button id="start">Start</button>
         <button disabled class="disabled" id="stop">Stop</button>
     </div>`;
-    require('../src/js/app');
+    slide = new Slider();
     });
+    beforeEach(() => {
+        current = document.querySelector('.current');
+        prev = document.querySelector('.previous');
+        next = document.querySelector('.next');
+    })
 
-    it('should change picture on previous button', function () {
-        const current = document.querySelector('.current')
-        document.getElementById('next').click();
+    it('should change picture on next button', function () {
+        slide.nextButtonClick();
         expect(current.classList.contains('previous')).toBe(true);
     });
 
-    it('should change picture on next button', function () {
-        const current = document.querySelector('.current')
-        document.getElementById('prev').click();
+    it('should change picture on previous button', function () {
+        slide.prevButtonClick();
         expect(current.classList.contains('next')).toBe(true);
     });
 
     it('should hide picture', function () {
-        const prev = document.querySelector('.previous');
-        document.getElementById('next').click();
+        slide.nextButtonClick();;
         expect(prev.classList.contains('hidden')).toBe(true);
-        const next = document.querySelector('.next');
-        document.getElementById('prev').click();
+        next = document.querySelector('.next');
+        slide.prevButtonClick();
         expect(next.classList.contains('hidden')).toBe(true);
     });
+    
+    it('should slide on timer', function () {
+        jest.useFakeTimers();
+        slide.startShowingPictures();
+        jest.advanceTimersByTime(1000);
+        expect(current.classList.contains('previous')).toBe(true);
+        expect(prev.classList.contains('hidden')).toBe(true);
+        expect(next.classList.contains('current')).toBe(true);
 
+        jest.advanceTimersByTime(1000);
+        expect(current.classList.contains('hidden')).toBe(true);
+        expect(prev.classList.contains('hidden')).toBe(true);
+        expect(next.classList.contains('previous')).toBe(true);
+    });
 });
