@@ -1,92 +1,35 @@
-// import "../../common/css/normalize.css";
-// import "../../common/css/skeleton.css";
-// import "../../common/css/dark-theme.css";
-import "./styles.css";
-
-const addTaskForm = document.getElementById("addTaskForm");
-const taskNameInput = document.getElementById("taskNameInput");
-const taskList = document.getElementById("taskList");
-const taskItemTemplate = document.getElementById("taskItemTemplate").innerHTML;
-
-addTaskForm.addEventListener("submit", onAddTaskFormSubmit);
-taskList.addEventListener("click", onTaskListClick);
-
-getList();
-
-function getList() {
-  return fetch("https://jsonplaceholder.typicode.com/todos?_limit=15")
-    .then((res) => res.json())
-    .then(renderList);
-}
-
-function renderList(data) {
-  data.forEach(addTask);
-}
-
-function onAddTaskFormSubmit(event) {
-  event.preventDefault();
-
-  submitForm();
-}
-
-function onTaskListClick(event) {
-  switch (true) {
-    case event.target.classList.contains("task-item"):
-      toggleTaskState(event.target);
-      break;
-    case event.target.classList.contains("delete-btn"):
-      deleteTask(event.target.parentElement);
-      break;
-  }
-}
-
-function submitForm() {
-  const task = { title: taskNameInput.value };
-  fetch("https://jsonplaceholder.typicode.com/todos/", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(task),
+const http = require('http');
+const url = require('url'); // 1 - Import Node.js core module
+require('./pgdp.js')
+const router = require('./router')
+const server = http.createServer(function (req, res) { 
+  const buffer = [];  // 2 - creating server
+  let result;
+//   if(query.pathname === '/'){
+//     res.writeHead(200, {'Content-type':'text/plain'});
+//     res.write('Hello, I am a webserver !');
+//     res.end();
+// }else {
+//     res.writeHead(404, {'Content-type':'text/plain'});
+//     res.end();
+// };
+  req.on('data', (chunk) => {
+    buffer.push(chunk);
   })
-    .then((res) => res.json())
-    .then((data) => {
-      task.id = data.id;
-      addTask(task);
-    });
 
-  resetForm();
-}
+  
+  req.on('end',async () =>{ 
+    //console.log(query);
+    if(!buffer.length>0){
+      res.end({})
+    }
+    const result = await router(req,res,JSON.parse(buffer));
+    res.end(JSON.stringify);
+  })
+    
+  })
+ // console.log(res);
 
-function addTask(task) {
-  const html = taskItemTemplate
-    .replace("{{title}}", task.title)
-    .replace("{{id}}", task.id);
+server.listen(5000); //3 - listen for any incoming requests
 
-  const newTaskEl = htmlToElement(html);
-  taskList.appendChild(newTaskEl);
-}
-
-function resetForm() {
-  addTaskForm.reset();
-}
-
-function toggleTaskState(el) {
-  el.classList.toggle("done");
-}
-
-function deleteTask(el) {
-  fetch("https://jsonplaceholder.typicode.com/todos/" + el.dataset.todoId, {
-    method: "DELETE",
-  }).then(() => {
-    el.remove();
-  });
-}
-
-function htmlToElement(html) {
-  const template = document.createElement("template");
-  html = html.trim();
-  template.innerHTML = html;
-  return template.content.firstChild;
-}
+console.log('Node.js web server at port 5000 is running..');

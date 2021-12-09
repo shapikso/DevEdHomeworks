@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "watch": "webpack --watch",
-    "build": "webpack"
+    "build": "webpack",
+    "start": "nodemon ./src/app.js"
   },
   "author": "",
   "license": "ISC",
@@ -20,5 +21,9 @@
     "style-loader": "^3.3.1",
     "webpack": "^5.64.1",
     "webpack-cli": "^4.9.1"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.15",
+    "pg": "^8.7.1"
   }
 }
