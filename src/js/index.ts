@@ -7,7 +7,7 @@ import "../styles.css";
 // type TCityWeather = {
 
 // }
-const mainWeather: HTMLElement | null = document.getElementById("main");
+const mainWeather: HTMLElement | null = document.getElementById("temp");
 const select: HTMLElement | null = document.querySelector(".selector");
 const taskItemTemplate = document.getElementById("taskItemTemplate")?.innerHTML;
 
@@ -23,6 +23,7 @@ function fromKelToCel (kel:number):string {
 }
 
 function addTask(city:TWeather) {
+    if(mainWeather) mainWeather.innerHTML = ' ';
     if(taskItemTemplate){
         const html: string = taskItemTemplate
         .replace("{{tempNow}}",fromKelToCel(city.main.temp))
@@ -55,18 +56,15 @@ type TWeather = {
 
 async function getWeather(
     URL: string,
-  ): Promise<TWeather> {
+  ): Promise<void> {
     const response = await fetch(URL);
     const body = await response.json();
-    return body;
+    addTask(body);
 }
-
-//getWeather('https://api.openweathermap.org/data/2.5/weather?q=Dnipro&appid=f1d53554aa15ea3a40648ba1d31a2e2e').then((data: TWeather) => addTask(data))
 
 select?.addEventListener('change', (event):void => {
     console.log('in select');
-    //onst elem = event.target
-    if(event.target.value){
-    getWeather(`https://api.openweathermap.org/data/2.5/weather?q=${event.target.value}&appid=f1d53554aa15ea3a40648ba1d31a2e2e`)
+    if((<HTMLInputElement>event.target).value){
+    getWeather(`https://api.openweathermap.org/data/2.5/weather?q=${(<HTMLInputElement>event.target).value}&appid=f1d53554aa15ea3a40648ba1d31a2e2e`)
 }
 })
