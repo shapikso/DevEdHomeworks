@@ -1,8 +1,17 @@
 const http = require('http');
- // 1 - Import Node.js core module
 require('./database/pgdp.js')
 const {routs} = require('./router/router')
 const server = http.createServer(function (req, res) { 
+
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS, POST, PUT');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+
+  if (req.method === "OPTIONS") { 
+    res.statusCode = 200; 
+    return res.end(); 
+  }
+
   const buffer = [];
   req.on('data', (chunk) => {
     buffer.push(chunk);
@@ -13,7 +22,6 @@ const server = http.createServer(function (req, res) {
     const result = await routs(req,res,body );
     res.end(JSON.stringify(result));
   })
-    
   })
 
 server.listen(5000);

@@ -1,70 +1,88 @@
+import axios from "../../node_modules/axios/index";
 import "../styles.css";
-
-// enum  WeatherEnum{
-//     apiKey = 'f1d53554aa15ea3a40648ba1d31a2e2e',
-//     defaultCity = 'London'
-// }
-// type TCityWeather = {
-
-// }
-const mainWeather: HTMLElement | null = document.getElementById("temp");
-const select: HTMLElement | null = document.querySelector(".selector");
-const taskItemTemplate = document.getElementById("taskItemTemplate")?.innerHTML;
-
 require("babel-core/register");
 require("babel-polyfill");
 
-function returnImg(imgId : string):string {
-    return `https://openweathermap.org/img/wn/${imgId}@2x.png`
-}
+import { validationName,validationSurname,validationEmail,validationPhone} from "./helper"
 
-function fromKelToCel (kel:number):string {
-    return (Math.round(kel-273.15)).toString()
-}
+const submite = <HTMLInputElement>document.getElementById("sign-up-button");
 
-function addTask(city:TWeather) {
-    if(mainWeather) mainWeather.innerHTML = ' ';
-    if(taskItemTemplate){
-        const html: string = taskItemTemplate
-        .replace("{{tempNow}}",fromKelToCel(city.main.temp))
-        .replace("{{tempFeel}}", fromKelToCel(city.main.feels_like))
-        .replace("{{cityName}}", city.name)
-        .replace("{{imgId}}",returnImg(city.weather[0].icon));
-    
-        const newTaskEl = htmlToElement(html);
-        if (newTaskEl && mainWeather){
-            mainWeather.appendChild(newTaskEl);
-        }
-    }
-  }
+const firstName = <HTMLInputElement>document.querySelector('#signup__firstname');
+const lastName = <HTMLInputElement>document.querySelector('#signup__lastname');
+const email = <HTMLInputElement>document.querySelector('#signup__login');
+const phone = <HTMLInputElement>document.querySelector('#signup__password');
+const adress = <HTMLInputElement>document.querySelector('#agress_area');
+const congratulation = <HTMLInputElement>document.querySelector('.congratulation');
 
-function htmlToElement(html : string) {
-  const template: HTMLTemplateElement = document.createElement("template");
-  html = html.trim();
-  template.innerHTML = html;
-  return template.content.firstChild;
-}
-  
-type TWeather = {
-    weather : {id: number,main: string,description: string, icon: string}[],
-    main : {temp: number, feels_like: number,temp_min: number,temp_max: number,pressure: number,humidity: number},
-    wind : {speed: number, deg: number},
-    clouds: {all:number},
-    name: string
+submite.addEventListener('click', (event) => {
+    event.preventDefault();
+    submitForm((firstName).value,(lastName).value,(email).value,(<HTMLInputElement>phone).value,(<HTMLInputElement>adress).value);
 
-}
-
-async function getWeather(
-    URL: string,
-  ): Promise<void> {
-    const response = await fetch(URL);
-    const body = await response.json();
-    addTask(body);
-}
-
-select?.addEventListener('change', (event):void => {
-    console.log('in select');
-    if((<HTMLInputElement>event.target).value){
-    getWeather(`https://api.openweathermap.org/data/2.5/weather?q=${(<HTMLInputElement>event.target).value}&appid=f1d53554aa15ea3a40648ba1d31a2e2e`)
-}
 })
+
+
+async function submitForm(name:string,surname:string,email:string,phone:string,adress:string) {
+    try {
+        const response = await axios.post('http://localhost:5000/create-user', {
+            "name" : name,
+            "surname": surname,
+            "email": email,
+            "phone": phone,
+            "adress": adress
+    })
+        if(response.status === 201) congratulation.classList.remove('hidden')
+    } catch (error) {
+        alert('user not created');
+    }
+}
+ 
+firstName.addEventListener('blur',() => {
+  const {validErr} = validationName((<HTMLInputElement>firstName).value)
+  if(validErr) {
+    firstName.classList.add('err')
+    submite.disabled = true;
+  } else {
+    firstName.classList.remove('err');
+    submite.disabled = false;
+  }
+})
+
+lastName.addEventListener('blur',() => {
+    const {validErr} = validationSurname((<HTMLInputElement>lastName).value)
+    if(validErr) {
+        lastName.classList.add('err');
+        submite.disabled = true;
+    } else{
+        lastName.classList.remove('err');
+        submite.disabled = false;
+    }
+  })
+
+  email.addEventListener('blur',() => {
+    const {validErr} = validationEmail((<HTMLInputElement>email).value)
+    if(validErr) {
+        email.classList.add('err');
+        submite.disabled = true;
+    } else{
+        email.classList.remove('err');
+        submite.disabled = false;
+    }
+  })
+
+  phone.addEventListener('blur',() => {
+    const {validErr} = validationPhone((<HTMLInputElement>phone).value)
+    if(validErr) {
+        phone.classList.add('err')
+        submite.disabled = true;
+    } else{
+        phone.classList.remove('err')
+        submite.disabled = false;
+    }
+  })
+
+
+  
+
+    
+
+

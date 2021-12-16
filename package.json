@@ -7,7 +7,7 @@
     "test": "jest",
     "watch": "webpack --watch",
     "start": "webpack-dev-server --mode development",
-    "build": "webpack --mode production",
+    "build": "webpack --mode development",
     "server": "nodemon ./server/src/app.js"
   },
   "author": "",
@@ -37,6 +37,7 @@
     "webpack-dev-server": "^4.6.0"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "joi": "^17.5.0",
     "nodemon": "^2.0.15",
     "pg": "^8.7.1",

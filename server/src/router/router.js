@@ -1,21 +1,23 @@
 const URL = require('url');
-const {CREATE_UNIVER, GET_UNIVER} = require('../constants/constants')
-const { createUni,getUni} = require('../controler/controller');
+const {CREATE_USER} = require('../constants/constants')
+const { createUser} = require('../controler/controller');
 
 
 async function routs(req,res,body) {
-    console.log(body);
-    let result, error;
+  console.log(body);
+    if(!body.phone) {
+      body.phone = '+12345678910'
+  }
+  if(!body.adress) {
+    body.adress = ' '
+}
+  
     const { method, url } = req;
     const { query, pathname } = URL.parse(url, true);
   
     switch (true) {
-      case method === 'POST' && pathname === CREATE_UNIVER:
-        ({ result, error } = await createUni(body));
-        break;
-
-      case method === 'GET' && pathname === GET_UNIVER:
-        ({ result, error } = await getUni(query));
+      case method === 'POST' && pathname === CREATE_USER:
+        ({ result, error } = await createUser(body));
         break;
 
       default:
