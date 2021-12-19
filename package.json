@@ -17,13 +17,16 @@
     "babel-jest": "^27.3.1",
     "css-loader": "^6.5.1",
     "html-webpack-plugin": "^5.5.0",
-    "jest": "^27.3.1",
+    "jest": "^27.4.5",
     "style-loader": "^3.3.1",
     "webpack": "^5.64.1",
     "webpack-cli": "^4.9.1"
   },
   "dependencies": {
+    "joi": "^17.5.0",
     "nodemon": "^2.0.15",
-    "pg": "^8.7.1"
+    "pg": "^8.7.1",
+    "supertest": "^6.1.6",
+    "swagger-ui": "^4.1.3"
   }
 }

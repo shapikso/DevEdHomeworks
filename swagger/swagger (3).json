@@ -1,0 +1,724 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Swagger",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "apiteam@swagger.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "petstore.swagger.io",
+  "basePath": "/v2",
+  "tags": [
+    {
+      "name": "university",
+      "description": "",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "teacher",
+      "description": ""
+    },
+    {
+      "name": "student",
+      "description": "",
+      "externalDocs": {
+        "description": "",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "courses",
+      "description": ""
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/create-uni": {
+      "post": {
+        "tags": [
+          "university"
+        ],
+        "summary": "Add a new university",
+        "description": "",
+        "operationId": "addUni",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "University object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Uni"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Sql error"
+          }
+        }
+      }
+    },
+    "/get-uni": {
+      "get": {
+        "tags": [
+          "university"
+        ],
+        "summary": "get university by id",
+        "description": "",
+        "operationId": "GetUni",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "integer",
+            "description": "",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Sql error"
+          }
+        }
+      }
+    },
+    "/get-uni-pages": {
+      "get": {
+        "tags": [
+          "university"
+        ],
+        "summary": "get universities pages",
+        "description": " ",
+        "operationId": "GetUniPages",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": " ",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Pages"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Sql error"
+          }
+        }
+      }
+    },
+    "/create-teacher": {
+      "post": {
+        "tags": [
+          "teacher"
+        ],
+        "summary": "Add a new teacher",
+        "description": "",
+        "operationId": "addTeacher",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "University object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Sql error"
+          }
+        }
+      }
+    },
+    "/get-teacher-by-uni": {
+      "get": {
+        "tags": [
+          "teacher"
+        ],
+        "summary": "get teacher by id",
+        "description": "",
+        "operationId": "GetTeacher",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "University object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Pages"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Sql error"
+          }
+        }
+      }
+    },
+    "/create-course": {
+      "post": {
+        "tags": [
+          "courses"
+        ],
+        "summary": "Add a new course",
+        "description": "",
+        "operationId": "addCourse",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "University object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Course"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Sql error"
+          }
+        }
+      }
+    },
+    "/get-course-by-uni": {
+      "get": {
+        "tags": [
+          "courses"
+        ],
+        "summary": "get courses by university",
+        "description": "",
+        "operationId": "GetCourses",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "University object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Pages"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Sql error"
+          }
+        }
+      }
+    },
+    "/delete-course": {
+      "delete": {
+        "tags": [
+          "courses"
+        ],
+        "summary": "delete course by id",
+        "description": "",
+        "operationId": "DelCourse",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "integer",
+            "description": "",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Sql error"
+          }
+        }
+      }
+    },
+    "/create-student": {
+      "post": {
+        "tags": [
+          "student"
+        ],
+        "summary": "Add a new student",
+        "description": "",
+        "operationId": "addStudente",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Student object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Course"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Sql error"
+          }
+        }
+      }
+    },
+    "/change-student": {
+      "put": {
+        "tags": [
+          "student"
+        ],
+        "summary": "Change student",
+        "description": "",
+        "operationId": "changeStudente",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Student object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserId"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Sql error"
+          }
+        }
+      }
+    },
+    "/get-student-by-uni": {
+      "get": {
+        "tags": [
+          "student"
+        ],
+        "summary": "get students by university",
+        "description": "",
+        "operationId": "GetStudents",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "University object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Pages"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Sql error"
+          }
+        }
+      }
+    },
+    "/delete-student": {
+      "delete": {
+        "tags": [
+          "student"
+        ],
+        "summary": "delete student by id",
+        "description": "",
+        "operationId": "DelStudent",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "integer",
+            "description": "",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Sql error"
+          }
+        }
+      }
+    },
+    "/get-students-by-course": {
+      "get": {
+        "tags": [
+          "courses"
+        ],
+        "summary": "get students by course",
+        "description": "",
+        "operationId": "GetStudentsByCourse",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Pages"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Sql error"
+          }
+        }
+      }
+    },
+    "/get-students-marks-by-course": {
+      "get": {
+        "tags": [
+          "courses"
+        ],
+        "summary": "get students avg marks by course",
+        "description": "",
+        "operationId": "GetStudentsMarksByCourse",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Pages"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Sql error"
+          }
+        }
+      }
+    },
+    "/delete-student-from-course": {
+      "delete": {
+        "tags": [
+          "courses"
+        ],
+        "summary": "delete students and his marks from course",
+        "description": "",
+        "operationId": "DeleteStudentfromCourse",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "integer",
+            "description": "",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Sql error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Pages": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "perPage": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Pages"
+      }
+    },
+    "Uni": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Uni"
+      }
+    },
+    "User": {
+      "type": "object",
+      "required": [
+        "name",
+        "surname",
+        "universityId"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "surname": {
+          "type": "string"
+        },
+        "universityId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "xml": {
+        "name": "Uni"
+      }
+    },
+    "UserId": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "surname": {
+          "type": "string"
+        },
+        "universityId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "xml": {
+        "name": "Uni"
+      }
+    },
+    "Course": {
+      "type": "object",
+      "required": [
+        "name",
+        "teacherId"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "teacherId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "xml": {
+        "name": "Uni"
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
