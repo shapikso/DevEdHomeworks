@@ -3,7 +3,7 @@ import { Configuration } from "webpack";
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const config: Configuration = {
-  entry: "./src/js/index.ts",
+  entry: "./src/js/app.ts",
   mode: "development",
   module: {
     rules: [

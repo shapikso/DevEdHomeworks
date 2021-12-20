@@ -1,4 +1,6 @@
 import "../styles.css";
+import "babel-core/register";
+import "babel-polyfill";
 
 // enum  WeatherEnum{
 //     apiKey = 'f1d53554aa15ea3a40648ba1d31a2e2e',
@@ -11,8 +13,6 @@ const mainWeather: HTMLElement | null = document.getElementById("temp");
 const select: HTMLElement | null = document.querySelector(".selector");
 const taskItemTemplate = document.getElementById("taskItemTemplate")?.innerHTML;
 
-require("babel-core/register");
-require("babel-polyfill");
 
 function returnImg(imgId : string):string {
     return `https://openweathermap.org/img/wn/${imgId}@2x.png`
