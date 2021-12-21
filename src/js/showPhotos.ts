@@ -8,7 +8,7 @@ function showBigImg(urlOfImg: string, id: number) {
         showBigImgClick(urlOfImg)})
 }
 
-function showBigImgClick(urlOfImg:string) {
+export function showBigImgClick(urlOfImg:string) {
     dom.bigImg.src = urlOfImg;
     dom.zoomIn.classList.remove('hidden')
 }
@@ -32,8 +32,8 @@ export async function showPhotos(leftPosition:number,rightPosition:number): Prom
     }
 
 }
-function addPhoto(photo: TPhoto) {
-    const html = dom.taskItemTemplate
+export function addPhoto(photo: TPhoto) {
+    const html = dom.taskItemTemplate.innerHTML
         .replace("{{title}}", photo.thumbnailUrl)
         .replace("{{id}}", photo.id.toString())
     const newTaskEl = htmlToElement(html);

@@ -1,16 +1,16 @@
 
 export const dom = {
     galery : <HTMLElement>document.querySelector('.galery'),
-    firstPage : <HTMLElement>document.getElementById('firstPage'),
-    secondPage : <HTMLElement>document.getElementById('secondPage'),
-    thirdPage : <HTMLElement>document.getElementById('thirdPage'),
-    fourthPage : <HTMLElement>document.getElementById('fourthPage'),
-    fifthPage : <HTMLElement>document.getElementById('fifthdPage'),
+    firstPage : <HTMLElement>document.querySelector('#firstPage'),
+    secondPage : <HTMLElement>document.querySelector('#secondPage'),
+    thirdPage : <HTMLElement>document.querySelector('#thirdPage'),
+    fourthPage : <HTMLElement>document.querySelector('#fourthPage'),
+    fifthPage : <HTMLElement>document.querySelector('#fifthdPage'),
     bigImg : <HTMLImageElement>document.querySelector('.bigImg'),
     zoomIn : <HTMLElement>document.querySelector('.zoomIn'),
     pages : <HTMLElement>document.querySelector('.pages'),
     delBnt : <HTMLElement>document.querySelector('.delete-btn'),
-    taskItemTemplate : (<HTMLElement>document.getElementById('taskItemTemplate')).innerHTML
+    taskItemTemplate : <HTMLElement>document.querySelector('#taskItemTemplate')
 }
 
 export const URL = 'https://jsonplaceholder.typicode.com/photos';

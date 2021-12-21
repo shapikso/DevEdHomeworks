@@ -10,7 +10,7 @@ dom.delBnt.addEventListener('click',() =>{
     dom.zoomIn.classList.add('hidden');
 })
 
-function makeActive(element:HTMLElement) {
+export function makeActive(element:HTMLElement) {
     document.querySelectorAll('.pages .activepage').forEach(n => n.classList.remove('activepage'));
     element.classList.add('activepage');
 }
