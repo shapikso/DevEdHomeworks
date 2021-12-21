@@ -5,7 +5,6 @@ function getCookingTime (eggsAmount:number) {
 }
 console.log(getCookingTime(9)); //returns 5
 
-
 function getNumber (array:number[]) {
     let result ;
     if (isEvenElements(array.slice(0,3))) { 
@@ -25,8 +24,6 @@ function isEvenElements (array:number[]) {
 }
 console.log(getNumber([1, 5, 7, 9, 15, 19, 777, -15, -11, 4, 9, 23, -17])); //returns 4
 console.log(getNumber([0, 12, 8, -4, 0, -122, 15, -4, 28, 12])) //returns 13
-
- 
 
 function findTitle (arr:TTitle[], str:string) {
     return arr.reduce((acc:TTitle[],element:TTitle) => {
@@ -49,7 +46,6 @@ const arr = [{title: 'Some title1'},
     {user: 'This obj doesn\’t have key title js'},
     {title: 'Js - is the best!'}];
 console.log(findTitle(arr,'js'));
-  
   
 function countCharacters(string: string) {
     const notValidKeys =' ~`!#$%^&*+=-[]\\\';,/{}|\":<>?';
@@ -85,7 +81,6 @@ function isNotPalindrome (number:number): boolean{
     return numberString !== reversedArgument ? true : false;
 }
 console.log(getNextPalindrome(102));
-  
   
 const objSet:TSet= { 
     add(value) {
