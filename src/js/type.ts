@@ -14,3 +14,6 @@ export type TSet = {
   genereteKey(): number,
   isEqual(element:any,value:any):boolean
 }
+export type TCharacter = {
+  [index:string]:number
+}

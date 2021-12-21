@@ -1,4 +1,4 @@
-import { TSet, TTitle } from "./type";
+import { TCharacter, TSet, TTitle } from "./type";
 
 function getCookingTime (eggsAmount:number) {
     return Math.ceil(eggsAmount/5) * 5;
@@ -50,9 +50,7 @@ const arr = [{title: 'Some title1'},
     {title: 'Js - is the best!'}];
 console.log(findTitle(arr,'js'));
   
-  type TCharacter = {
-    [index:string]:number
-  }
+  
 function countCharacters(string: string) {
     const notValidKeys =' ~`!#$%^&*+=-[]\\\';,/{}|\":<>?';
     const arrayFromString = Array.from(string)
