@@ -1,4 +1,6 @@
 exports.userValidator = require('./uni.validator').userValidator;
+exports.userGetValidator = require('./uni.validator').userGetValidator;
+
 
 exports.validate = (data, schema) => {
   const result = schema.validate(data, { abortEarly: false });

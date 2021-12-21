@@ -1,6 +1,6 @@
 const URL = require('url');
 const {CREATE_USER,LOGIN_USER} = require('../constants/constants')
-const { createUser} = require('../controler/controller');
+const { createUser,getUser} = require('../controler/controller');
 
 
 async function routs(req,res,body) {  

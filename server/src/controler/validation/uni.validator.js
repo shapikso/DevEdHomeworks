@@ -9,3 +9,8 @@ exports.userValidator = Joi.object().keys({
   updated_at: Joi.date().timestamp('javascript').default(new Date())
 });
 
+exports.userGetValidator = Joi.object().keys({
+  password: Joi.string().required(),
+  email: Joi.string().email().required()
+});
+
