@@ -60,7 +60,7 @@ function getCookingTime (eggsAmount:number) {
   // 4. Принимая строку, ваша функция должна вернуть обьект, в котором
   // ключи – символы строки, значение – количество повторений символов в
   // строке
-  function countCharacters(string) {
+  function countCharacters(string: string) {
     const notValidKeys =' ~`!#$%^&*+=-[]\\\';,/{}|\":<>?';
     const arrayFromString = Array.from(string)
    const result = arrayFromString.reduce((acc,element) => {
