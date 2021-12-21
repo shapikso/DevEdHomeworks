@@ -1,9 +1,10 @@
 const pgClient = require('../pgdp');
 
-exports.createUser = async (name,surname,email,phone,adress) => {
+exports.createUser = async (name,surname,password,email,createdAt,updatedAt) => {
   try {
-    await pgClient.query(`INSERT INTO users("name",surname,email,phone,adress) 
-    VALUES ('${name}', '${surname}','${email}','${phone}','${adress}')`);
+    const res = await pgClient.query(`INSERT INTO users ("name",surname,"password",email,created_at,updated_at)
+    values('${name}','${surname}','${password}','${email}', '${createdAt}', '${updatedAt}');`);
+    console.log(res)
     return { result: true };
   } catch (e) {
     return { error: e.message };

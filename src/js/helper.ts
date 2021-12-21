@@ -2,12 +2,12 @@ const nameVal = /^[a-zA-Z\-]+$/;
 const emailVal = /^[\w-\.\d*]+@[\w\d]+(\.\w{2,4})$/;
 const phoneVal = /(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})/;
 
-type TObj = {
+type TError = {
     validErr? : boolean,
     message? : string
 }
 
-function validationName(name:string):TObj {
+function validationName(name:string):TError {
     if(!name.match(nameVal)) return {validErr: true, message:'first name not valid'}
     return {}
     }

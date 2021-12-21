@@ -1,3 +1,4 @@
 module.exports = {
-    CREATE_USER : '/create-user'
+    LOGIN_USER : '/sign-in',
+    CREATE_USER : '/sign-up'
 }
