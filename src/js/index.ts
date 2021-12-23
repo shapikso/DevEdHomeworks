@@ -1,35 +1,26 @@
 import "../styles.css";
 
-// enum  WeatherEnum{
-//     apiKey = 'f1d53554aa15ea3a40648ba1d31a2e2e',
-//     defaultCity = 'London'
-// }
-// type TCityWeather = {
-
-// }
-const mainWeather: HTMLElement | null = document.getElementById("temp");
-const select: HTMLElement | null = document.querySelector(".selector");
-const taskItemTemplate = document.getElementById("taskItemTemplate")?.innerHTML;
+const mainWeather = <HTMLElement>document.getElementById("container");
+const taskItemTemplate = (<HTMLElement>document.getElementById("taskItemTemplate")).innerHTML;
+const taskPersonTemplate = (<HTMLElement>document.getElementById("taskItemPerson")).innerHTML;
+const showMore = <HTMLElement>document.getElementById("showMore");
+const hiddePopUpButton = <HTMLElement>document.getElementById("hiddePopUp");
+const popUP = <HTMLElement>document.querySelector(".popUp");
+const showMoreInfo = <HTMLElement>document.getElementById("container");
 
 require("babel-core/register");
 require("babel-polyfill");
 
-function returnImg(imgId : string):string {
-    return `https://openweathermap.org/img/wn/${imgId}@2x.png`
-}
+let defoultid = 1;
 
-function fromKelToCel (kel:number):string {
-    return (Math.round(kel-273.15)).toString()
-}
-
-function addTask(city:TWeather) {
-    if(mainWeather) mainWeather.innerHTML = ' ';
+function addTask(user:TUser) {
+    const {id, avatar_url:avatar, login} = user;
+    defoultid = id;
     if(taskItemTemplate){
         const html: string = taskItemTemplate
-        .replace("{{tempNow}}",fromKelToCel(city.main.temp))
-        .replace("{{tempFeel}}", fromKelToCel(city.main.feels_like))
-        .replace("{{cityName}}", city.name)
-        .replace("{{imgId}}",returnImg(city.weather[0].icon));
+        .replace("{{id}}", id.toString())
+        .replace("{{avatar}}", avatar)
+        .replace("{{login}}", login);
     
         const newTaskEl = htmlToElement(html);
         if (newTaskEl && mainWeather){
@@ -45,26 +36,113 @@ function htmlToElement(html : string) {
   return template.content.firstChild;
 }
   
-type TWeather = {
-    weather : {id: number,main: string,description: string, icon: string}[],
-    main : {temp: number, feels_like: number,temp_min: number,temp_max: number,pressure: number,humidity: number},
-    wind : {speed: number, deg: number},
-    clouds: {all:number},
-    name: string
+type TUser = {
+    login: string,
+        id: number,
+        node_id: string,
+        avatar_url: string,
+        gravatar_id: string,
+        url: string,
+        html_url: string,
+        followers_url: string,
+        following_url: string,
+        gists_url: string,
+        starred_url: string,
+        subscriptions_url: string,
+        organizations_url: string,
+        repos_url: string,
+        events_url: string,
+        received_events_url: string,
+        type: string,
+        site_admin: boolean
 
 }
 
-async function getWeather(
-    URL: string,
-  ): Promise<void> {
+type TPerson = {
+    login: string,
+    id: number,
+    node_id: string,
+    avatar_url: string,
+    gravatar_id: string,
+    url: string,
+    html_url: string,
+    followers_url: string,
+    following_url: string,
+    gists_url: string,
+    starred_url: string,
+    subscriptions_url: string,
+    organizations_url: string,
+    repos_url: string,
+    events_url: string,
+    received_events_url: string,
+    type: string,
+    site_admin: boolean,
+    name: string,
+    company: string,
+    blog: string,
+    location: string,
+    email: string,
+    hireable: string,
+    bio: string,
+    twitter_username: string,
+    public_repos: number,
+    public_gists: number,
+    followers: number,
+    following: number,
+    created_at: string,
+    updated_at: string
+}
+async function getUsers(URL: string, id:number): Promise<void> {
+    const response = await fetch(URL + `?since=${id}`);
+    const body: TUser[] = await response.json();
+    console.log(body)
+    body.forEach(element => {
+        addTask(element);
+    });
+   
+}
+const handleGetUsers = () => getUsers(`https://api.github.com/users`,defoultid)
+showMore.addEventListener('click', handleGetUsers);
+getUsers(`https://api.github.com/users`, defoultid);
+const hidePop = () => {
+    popUP.classList.add('hidden');
+    
+}
+hiddePopUpButton.addEventListener('click', hidePop)
+
+const showPopUP = (person :TPerson) => {
+    popUP.innerHTML = ' ';
+    const {avatar_url:avatar,followers, following, public_repos:publicRepos,blog,url} = person;
+    if(taskItemTemplate){
+        const html: string = taskPersonTemplate
+        .replace("{{followers}}", followers.toString())
+        .replace("{{avatar}}", avatar)
+        .replace("{{following}}", following.toString())
+        .replace("{{id}}", publicRepos.toString())
+        .replace("{{avatar}}", blog)
+        .replace("{{login}}", url);
+    
+        const newTaskEl = htmlToElement(html);
+        if (newTaskEl && popUP){
+            popUP.appendChild(newTaskEl);
+        }
+        popUP.classList.remove('hidden')
+    }
+}
+
+const showUserCard = async (URL: string) => {
     const response = await fetch(URL);
-    const body = await response.json();
-    addTask(body);
+    const body: TPerson = await response.json();
+    showPopUP(body);
 }
 
-select?.addEventListener('change', (event):void => {
-    console.log('in select');
-    if((<HTMLInputElement>event.target).value){
-    getWeather(`https://api.openweathermap.org/data/2.5/weather?q=${(<HTMLInputElement>event.target).value}&appid=f1d53554aa15ea3a40648ba1d31a2e2e`)
+const showUser = (event: MouseEvent) => {
+    const element = <HTMLElement>event.target
+   if (element.classList.contains('showButton')){
+       const id = element.offsetParent?.id
+       console.log(id);
+       showUserCard(`https://api.github.com/user/${id}`)
+   }
 }
-})
+
+showMoreInfo.addEventListener('click', showUser);

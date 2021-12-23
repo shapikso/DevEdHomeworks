@@ -11,61 +11,71 @@
     <header class = "wheatherHeder">
         <img class="headerImg" src = "https://openweathermap.org/themes/openweathermap/assets/img/logo_white_cropped.png"></img>
     </header>
-    <main id="main">
-        
-            <select class="selector">
-                <option>London</option>
-                <option>Dnipro</option>
-                <option>Kyiv</option>
-                <option>Moscow</option>
-                <option>Barcelona</option>
-              </select>
-        <div id="temp">
-            <div class="weather">  
-                <div class="cityName">
-                    <span>London</span>
-                </div>
-                    <div class="mainInfo">
-                        <div class="image">
-                            <img src="https://openweathermap.org/img/wn/04d@2x.png" >
-                        </div>
-                        <div class="temperature">
-                            <div class="tempNow">
-                                <span>10 C</span>
-                            </div>
-                            <div class="tempFeel">
-                                <span>Real Feel: 5 C</span>
-                            </div>
-                        </div>
-                    </div>     
-                </div>
+    <div id="container">
+
+    </div>
+    <div class="popUp">
+        <button id="hiddePopUp">hidde</button>
+        <div class="info">
+          <div class="card cardMore" id="{{id}}">
+            <img src="https://via.placeholder.com/340x120/FFB6C1/000000" alt="Cover" class="card-img-top">
+            <div class="card-body text-center">
+              <img src="{{avatar}}" style="width:100px;margin-top:-65px" alt="User" class="img-fluid img-thumbnail rounded-circle border-0 mb-3">
+              <p class="Followers">{{followers}}</p>
+              <p class="following">{{following}}</p>
+              <p class="publicRepos">{{publicRepos}}</p>
+              <p class="blog">{{blog}}</p>
+              <p class="blog">{{url}}</p>
             </div>
+            <div class="card-footer">
+            </div>
+          </div>
         </div>
-    </main>
+    </div>
+    <div class="showMore">
+      <button id="showMore">
+        Show More
+      </button>
+    </div>
     <footer class="wheatherFooter">
         <span>Just random footer</span>
     </footer>
 
     <script type="text/template" id="taskItemTemplate">
-        <div class="weather">  
-            <div class="cityName">
-                <span>{{cityName}}</span>
+        <div class="card" id="{{id}}">
+            <img src="https://via.placeholder.com/340x120/FFB6C1/000000" alt="Cover" class="card-img-top">
+            <div class="card-body text-center">
+              <img src="{{avatar}}" style="width:100px;margin-top:-65px" alt="User" class="img-fluid img-thumbnail rounded-circle border-0 mb-3">
+              <p class="Name">{{login}}</p>
+              <p class="City">{{city}}</p>
             </div>
-                <div class="mainInfo">
-                    <div class="image">
-                        <img src="{{imgId}}" >
-                    </div>
-                    <div class="temperature">
-                        <div class="tempNow">
-                            <span>{{tempNow}} C</span>
-                        </div>
-                        <div class="tempFeel">
-                            <span>Real Feel: {{tempFeel}} C</span>
-                        </div>
-                    </div>
-                </div>     
+            <div class="card-footer">
+              <button class="btn btn-light btn-sm bg-white has-icon btn-block showButton" type="button"><i class="material-icons"></i>Show more</button>
             </div>
-        </div>
+          </div>
     </script>
+    <script type="text/template" id="taskItemPerson">
+      <button id="hiddePopUp">hidde</button>
+        <div class="info">
+          <div class="card cardMore" id="{{id}}">
+            <img src="https://via.placeholder.com/340x120/FFB6C1/000000" alt="Cover" class="card-img-top">
+            <div class="card-body text-center">
+              <img src="{{avatar}}" style="width:100px;margin-top:-65px" alt="User" class="img-fluid img-thumbnail rounded-circle border-0 mb-3">
+              <p class="Followers">{{followers}}</p>
+              <p class="following">{{following}}</p>
+              <p class="publicRepos">{{publicRepos}}</p>
+              <p class="blog">{{blog}}</p>
+              <p class="blog">{{url}}</p>
+            </div>
+            <div class="card-footer">
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="showMore">
+      <button id="showMore">
+        Show More
+      </button>
+  </script>
 </body>
 </html>
