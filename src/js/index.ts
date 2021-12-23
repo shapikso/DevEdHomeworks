@@ -4,7 +4,7 @@ const mainWeather = <HTMLElement>document.getElementById("container");
 const taskItemTemplate = (<HTMLElement>document.getElementById("taskItemTemplate")).innerHTML;
 const taskPersonTemplate = (<HTMLElement>document.getElementById("taskItemPerson")).innerHTML;
 const showMore = <HTMLElement>document.getElementById("showMore");
-const hiddePopUpButton = <HTMLElement>document.getElementById("hiddePopUp");
+//const hiddePopUpButton = <HTMLElement>document.getElementById("hiddePopUp");
 const popUP = <HTMLElement>document.querySelector(".popUp");
 const showMoreInfo = <HTMLElement>document.getElementById("container");
 
@@ -33,7 +33,7 @@ function htmlToElement(html : string) {
   const template: HTMLTemplateElement = document.createElement("template");
   html = html.trim();
   template.innerHTML = html;
-  return template.content.firstChild;
+  return template.content;
 }
   
 type TUser = {
@@ -104,11 +104,15 @@ async function getUsers(URL: string, id:number): Promise<void> {
 const handleGetUsers = () => getUsers(`https://api.github.com/users`,defoultid)
 showMore.addEventListener('click', handleGetUsers);
 getUsers(`https://api.github.com/users`, defoultid);
-const hidePop = () => {
-    popUP.classList.add('hidden');
+
+const hidePop = (event:MouseEvent) => {
+    if((<HTMLElement>event.target).classList.contains('hiddePopUp')){
+        popUP.classList.add('hidden');
+    }
+    
     
 }
-hiddePopUpButton.addEventListener('click', hidePop)
+popUP.addEventListener('click', hidePop)
 
 const showPopUP = (person :TPerson) => {
     popUP.innerHTML = ' ';
@@ -118,11 +122,12 @@ const showPopUP = (person :TPerson) => {
         .replace("{{followers}}", followers.toString())
         .replace("{{avatar}}", avatar)
         .replace("{{following}}", following.toString())
-        .replace("{{id}}", publicRepos.toString())
-        .replace("{{avatar}}", blog)
-        .replace("{{login}}", url);
+        .replace("{{publicRepos}}", publicRepos.toString())
+        .replace("{{blog}}", blog)
+        .replace("{{url}}", url);
     
         const newTaskEl = htmlToElement(html);
+        console.log(newTaskEl)
         if (newTaskEl && popUP){
             popUP.appendChild(newTaskEl);
         }
