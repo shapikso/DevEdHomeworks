@@ -4,6 +4,13 @@
       "ecmaVersion": 2018,
       "sourceType": "module"
     },
-    "plugins": ["@typescript-eslint"],
-    "extends": ["plugin:@typescript-eslint/recommended"]
+    "plugins": [ "@typescript-eslint","no-loops"],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+      "indent": ["error", 4]	
+    }
   }
