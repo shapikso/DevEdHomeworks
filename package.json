@@ -37,14 +37,17 @@
     "webpack-dev-server": "^4.6.0"
   },
   "dependencies": {
+    "-": "0.0.1",
     "axios": "^0.24.0",
     "bcryptjs": "^2.4.3",
     "i": "^0.3.7",
+    "jets": "^0.14.1",
     "joi": "^17.5.0",
     "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.15",
     "npm": "^8.3.0",
     "pg": "^8.7.1",
-    "style-loader": "^3.3.1"
+    "style-loader": "^3.3.1",
+    "supertest": "^6.1.6"
   }
 }

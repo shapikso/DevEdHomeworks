@@ -25,5 +25,5 @@ const server = http.createServer(function (req, res) {
   })
 
 server.listen(5000);
-
+module.exports.server = server;
 console.log('Node.js web server at port 5000 is running..');

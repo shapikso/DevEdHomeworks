@@ -1,5 +1,4 @@
-exports.userValidator = require('./uni.validator').userValidator;
-exports.userGetValidator = require('./uni.validator').userGetValidator;
+exports.factorialValidate = require('./uni.validator').factorialValidate;
 
 
 exports.validate = (data, schema) => {

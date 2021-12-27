@@ -1,19 +1,18 @@
 const URL = require('url');
-const {CREATE_USER,LOGIN_USER} = require('../constants/constants')
-const { createUser,getUser} = require('../controler/controller');
+const { findFactorial,getError} = require('../controler/controller');
 
 
 async function routs(req,res,body) {  
     const { method, url } = req;
-    const { query, pathname } = URL.parse(url, true);
+    const { pathname } = URL.parse(url, true);
   
     switch (true) {
-      case method === 'POST' && pathname === CREATE_USER:
-        ({ result, error } = await createUser(body));
+      case method === 'POST' && pathname === '/factorial':
+        ({ result, error } = await findFactorial(body));
         break;
       
-      case method === 'GET' && pathname === LOGIN_USER:
-        ({ result, error } = await getUser(body));
+      case method === 'GET' && pathname === '/db-error':
+        ({ result, error } = await getError(body));
         break;
 
       default:

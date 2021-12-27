@@ -10,13 +10,6 @@ module.exports = {
   verbose: true,
   projects: [
     {
-      displayName: "Browser",
-      testEnvironment: "jsdom",
-      rootDir: "./",
-      testMatch: ["<rootDir>/__tests__/**/*.[jt]s"],
-      testURL: "http://localhost",
-    },
-    {
       displayName: "Node.js",
       testEnvironment: "node",
       rootDir: "./",

@@ -1,16 +1,7 @@
 const Joi = require('joi');
 
-exports.userValidator = Joi.object().keys({
-  name: Joi.string().required(),
-  surname: Joi.string().required(),
-  password: Joi.string().required(),
-  email: Joi.string().email().required(),
-  created_at: Joi.date().timestamp('javascript').default(new Date()),
-  updated_at: Joi.date().timestamp('javascript').default(new Date())
-});
-
-exports.userGetValidator = Joi.object().keys({
-  password: Joi.string().required(),
-  email: Joi.string().email().required()
+exports.factorialValidate = Joi.object().keys({
+  type: Joi.string().valid('recursion', 'cycle').required(),
+  number: Joi.number().required(),
 });
 
