@@ -13,59 +13,32 @@
     </header>
     <main id="main">
         
-            <select class="selector">
-                <option>London</option>
-                <option>Dnipro</option>
-                <option>Kyiv</option>
-                <option>Moscow</option>
-                <option>Barcelona</option>
+            <select class="country">
+                <option>gb</option>
+                <option>at</option>
+                <option>au</option>
+                <option>br</option>
+                <option>ca</option>
+              </select>
+              <select class="type">
+                <option>IT-Jobs</option>
+                <option>Teaching-Jobs</option>
+                <option>Engineering-Jobs</option>
+                <option>Logistics-Warehouse-Jobs</option>
+                <option>Healthcare-Nursing-Jobs</option>
+                <option>Sales-Jobs</option>
+                <option>Social-work-Jobs</option>
+                <option>Trade-Construction-Jobs</option>
+                <option>Accounting-Finance-Jobs</option>
+                <option>Manufacturing-Jobs</option>
               </select>
         <div id="temp">
-            <div class="weather">  
-                <div class="cityName">
-                    <span>London</span>
-                </div>
-                    <div class="mainInfo">
-                        <div class="image">
-                            <img src="https://openweathermap.org/img/wn/04d@2x.png" >
-                        </div>
-                        <div class="temperature">
-                            <div class="tempNow">
-                                <span>10 C</span>
-                            </div>
-                            <div class="tempFeel">
-                                <span>Real Feel: 5 C</span>
-                            </div>
-                        </div>
-                    </div>     
-                </div>
-            </div>
+            <canvas id="myChart" width="400" height="400"></canvas>
         </div>
+        <button class="submite" width="400" height="400"> show by filter</button>
     </main>
     <footer class="wheatherFooter">
         
     </footer>
-
-    <script type="text/template" id="taskItemTemplate">
-        <div class="weather">  
-            <div class="cityName">
-                <span>{{cityName}}</span>
-            </div>
-                <div class="mainInfo">
-                    <div class="image">
-                        <img src="{{imgId}}" >
-                    </div>
-                    <div class="temperature">
-                        <div class="tempNow">
-                            <span>{{tempNow}} C</span>
-                        </div>
-                        <div class="tempFeel">
-                            <span>Real Feel: {{tempFeel}} C</span>
-                        </div>
-                    </div>
-                </div>     
-            </div>
-        </div>
-    </script>
 </body>
 </html>

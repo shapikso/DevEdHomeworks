@@ -42,7 +42,7 @@ const config: Configuration = {
   devServer: {
     static: path.join(__dirname, "dist"),
     compress: true,
-    port: 4000,
+    port: 5500,
   },
 };
 export default config;
