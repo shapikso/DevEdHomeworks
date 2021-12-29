@@ -36,6 +36,8 @@
     "webpack-dev-server": "^4.6.0"
   },
   "dependencies": {
+    "axios": "^0.24.0",
+    "deezer-web-api": "^1.7.2",
     "style-loader": "^3.3.1"
   }
 }
