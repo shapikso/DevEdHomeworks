@@ -8,57 +8,37 @@
     <title></title>
 </head>
 <body>
-    <header class = "wheatherHeder">
-        <img class="headerImg" src = "https://openweathermap.org/themes/openweathermap/assets/img/logo_white_cropped.png"></img>
-    </header>
-    <div id="container">
-
+  <div class="pyro">
+    <div class="before"></div>
+    <div class="after"></div>
+  </div>
+	<div class="countdown">
+		<div>
+			<div class="value days">0</div>
+			<div class="label">days</div>
+			<div class="yeardigit">2</div>
+		</div>
+		<div>
+			<div class="value hours">0</div>
+			<div class="label">hours</div>
+			<div class="yeardigit">0</div>
+		</div>
+		<div>
+			<div class="value minutes">0</div>
+			<div class="label">minutes</div>
+			<div class="yeardigit">2</div>
+		</div>
+		<div>
+			<div class="value seconds">0</div>
+			<div class="label">seconds</div>
+			<div class="yeardigit">2</div>
+		</div>
+	</div>
+    <div class="center">
+    <hr>
+    <p id="demo">
+      
+    </p>
     </div>
-    <div class="popUp hidden">
-        
-    </div>
-    <div class="showMore">
-      <button id="showMore">
-        Show More
-      </button>
-    </div>
-    <footer class="wheatherFooter">
-        <span>Just random footer</span>
-    </footer>
-
-    <script type="text/template" id="taskItemTemplate">
-        <div class="card" id="{{id}}">
-            <div  class="card-img-top"></div>
-            <div class="card-body text-center">
-              <img src="{{avatar}}" style="width:100px;margin-top:-65px" alt="User" class="img-fluid img-thumbnail rounded-circle border-0 mb-3">
-              <p class="Name">{{login}}</p>
-            </div>
-            <div class="card-footer">
-              <button class="btn btn-light btn-sm bg-white has-icon btn-block showButton" type="button"><i class="material-icons"></i>Show more</button>
-            </div>
-          </div>
-    </script>
-    <script type="text/template" id="taskItemPerson">
-      <button class="hiddePopUp">hidde</button>
-        <div class="info">
-          <div class="card cardMore" id="{{id}}">
-            <div  class="card-img-top"></div>
-            <div class="card-body text-center">
-              <img src="{{avatar}}" style="width:100px;margin-top:-65px" alt="User" class="img-fluid img-thumbnail rounded-circle border-0 mb-3">
-              <p class="Followers">Followers:</p>
-              <p class="Followers">{{followers}}</p>
-              <p class="following">Following:</p>
-              <p class="following">{{following}}</p>
-              <p class="publicRepos">Public repositorys:</p>
-              <p class="publicRepos">{{publicRepos}}</p>
-              <p class="blog">Blog url:</p>
-              <p class="blog">{{blog}}</p>
-              <p class="blog">Git repository:</p>
-              <p class="blog">{{url}}</p>
-            </div>
-          </div>
-        </div>
-    </div>
-  </script>
 </body>
 </html>
