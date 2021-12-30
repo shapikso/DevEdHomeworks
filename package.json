@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest",
     "watch": "webpack --watch",
+    "server": "nodemon ./server/src/app.js",
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production"
   },
@@ -38,7 +39,9 @@
   "dependencies": {
     "axios": "^0.24.0",
     "chart.js": "^3.7.0",
+    "joi": "^17.5.0",
     "ng2-charts": "^3.0.5",
+    "nodemon": "^2.0.15",
     "style-loader": "^3.3.1"
   }
 }

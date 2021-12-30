@@ -12,15 +12,15 @@
         <img class="headerImg" src = "https://openweathermap.org/themes/openweathermap/assets/img/logo_white_cropped.png"></img>
     </header>
     <main id="main">
-        
-            <select class="country">
+        <div class="filters">
+            <select class="country select">
                 <option>gb</option>
                 <option>at</option>
                 <option>au</option>
                 <option>br</option>
                 <option>ca</option>
               </select>
-              <select class="type">
+              <select class="type select">
                 <option>IT-Jobs</option>
                 <option>Teaching-Jobs</option>
                 <option>Engineering-Jobs</option>
@@ -32,6 +32,7 @@
                 <option>Accounting-Finance-Jobs</option>
                 <option>Manufacturing-Jobs</option>
               </select>
+        </div>
         <div id="temp">
             <canvas id="myChart" width="400" height="400"></canvas>
         </div>

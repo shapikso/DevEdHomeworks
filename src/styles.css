@@ -57,3 +57,36 @@ main{
     align-items: center;
     margin-top: -10px;
 }
+.filters {
+    margin: 50px;
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+button {
+    margin-top: 50px;
+     padding: 1rem 2rem;
+     font-size: 1.25rem;
+     position: relative;
+     border: 2px solid #48484a;
+     color: #48484a;
+     background-color: transparent;
+     text-align: center;
+     cursor: pointer;
+}
+
+
+.select-box {
+    cursor: pointer;
+    position : relative;
+    margin: 5em auto;
+  }
+  
+.select {
+    width: 200px;
+    padding: 5px 0;
+    height: 40px;
+    background: none transparent;
+
+  }
+ 
