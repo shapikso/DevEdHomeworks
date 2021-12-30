@@ -24,6 +24,8 @@ const data = {
 
 const ctx = <CanvasRenderingContext2D>(<HTMLCanvasElement>document.getElementById('myChart')).getContext('2d');
 const showChart = (mounth) => {
+
+    //myChart.destroy();
     ctx.clearRect(0, 0, 400, 400);
     const myChart = new Chart(ctx, {
         type: 'doughnut',
@@ -60,16 +62,20 @@ const showChart = (mounth) => {
         }
     });
     console.log(myChart);
-    myChart.destroy();
+   // myChart.destroy();
 }
 
 
 const getJobData = async () => {
     const country = (<HTMLSelectElement>document.querySelector('.country')).value
     const type = (<HTMLSelectElement>document.querySelector('.type')).value
-    const res = await axios.get(`https://api.adzuna.com/v1/api/jobs/${country}/history?app_id=91f2ffdf&app_key=df22e92c49631fc7a02f50e0e68f2815&category=${type}`,{
-        headers: {"Access-Control-Allow-Origin": "*"},
-    })
+
+    const res = await axios.get(`https://api.adzuna.com/v1/api/jobs/${country}/history`,
+        { params: { app_id: '91f2ffdf', app_key: 'df22e92c49631fc7a02f50e0e68f2815',category: type},
+            headers: {"content-type": "application/json"}})
+
+
+     //await axios.get(`https://api.adzuna.com/v1/api/jobs/${country}/history?app_id=91f2ffdf&app_key=df22e92c49631fc7a02f50e0e68f2815&category=${type}`)
     showChart(res.data.month)
 
 }
