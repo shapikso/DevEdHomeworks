@@ -6,7 +6,6 @@
   "scripts": {
     "test": "jest",
     "watch": "webpack --watch",
-    "server": "nodemon ./server/src/app.js",
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production"
   },
