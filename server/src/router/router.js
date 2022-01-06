@@ -2,7 +2,7 @@ const URL = require('url');
 const { getHistory} = require('../controler/controller');
 
 
-async function routs(req,res,body) {  
+async function routs(req,res) {  
     const { method, url } = req;
     const { pathname,query} = URL.parse(url, true);
   
@@ -20,7 +20,7 @@ async function routs(req,res,body) {
       return res.end(JSON.stringify({ error }));
     }
     res.statusCode = result.status;
-    res.end(JSON.stringify(result.data));
+    return result.data;
 }
 
 module.exports = { routs };
