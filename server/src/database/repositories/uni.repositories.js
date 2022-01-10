@@ -3,8 +3,12 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 exports.createUser = async (name,surname,password,email,createdAt,updatedAt) => {
+  console.log(name);
+  console.log(surname);
+  console.log(password);
+  console.log(email);
   try {
-    const res = await pgClient.query(`INSERT INTO users ("name",surname,"password",email,created_at,updated_at)
+    const res = await pgClient.query(`INSERT INTO userIng ("name",surname,"password",email,created_at,updated_at)
     values('${name}','${surname}','${password}','${email}', '${createdAt}', '${updatedAt}');`);
     console.log(res)
     return { result: true };
@@ -16,7 +20,7 @@ exports.createUser = async (name,surname,password,email,createdAt,updatedAt) => 
 exports.getUser = async (email,password) => {
   try {
     let token;
-    const res = await pgClient.query(`select email, "password" from users
+    const res = await pgClient.query(`select email, "password" from userIng
     where email = '${email}';`);
     console.log(res.rows);
     if(await bcrypt.compare(password, res.rows[0].password)){

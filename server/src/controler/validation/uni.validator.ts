@@ -1,4 +1,4 @@
-const Joi = require('joi');
+import Joi from "joi";
 
 exports.userValidator = Joi.object().keys({
   name: Joi.string().required(),

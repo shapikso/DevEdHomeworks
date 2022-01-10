@@ -1,8 +1,7 @@
-const http = require('http');
+import { createServer, IncomingMessage, ServerResponse } from 'http';
 require('./database/pgdp.js')
 const {routs} = require('./router/router')
-const server = http.createServer(function (req, res) { 
-
+const server = createServer(function (req: IncomingMessage, res: ServerResponse) { 
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS, POST, PUT');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
@@ -12,15 +11,14 @@ const server = http.createServer(function (req, res) {
     return res.end(); 
   }
 
-  const buffer = [];
+  const buffer: object[] = [];
   req.on('data', (chunk) => {
     buffer.push(chunk);
   })
   
-  req.on('end',async () =>{ 
-    const body = buffer.length ? JSON.parse(buffer) : null;
-    const result = await routs(req,res,body );
-    res.end(JSON.stringify(result));
+  req.on('end',async () => { 
+     const body: object = buffer.length ? JSON.parse(buffer.toString()) : null;
+     routs(req,res,body);
   })
   })
 
