@@ -2,8 +2,7 @@
 import * as URL from "url";
 import { IncomingMessage, ServerResponse } from 'http';
 import { TResult } from "../type";
-const { CREATE_USER, LOGIN_USER } = require('../constants/constants')
-const { createUser, getData} = require('../controler/controller');
+const { getSeasonsData, getMatches, getMatch } = require('../controler/controller');
 
 async function routs(req: IncomingMessage, res: ServerResponse, body: object) {  
     const { method, url } = req;
@@ -11,12 +10,16 @@ async function routs(req: IncomingMessage, res: ServerResponse, body: object) {
     let result: TResult;
     let error: TResult;
     switch (true) {
-      case method === 'POST' && pathname === CREATE_USER:
-          ({ result, error } = await createUser(body));
-        break;
-      
       case method === 'GET' && pathname === '/seasons':
-        ({ result, error }  = await getData());
+        ({ result, error }  = await getSeasonsData());
+        break;
+
+      case method === 'GET' && pathname === '/matches':
+        ({ result, error }  = await getMatches(query));
+        break;
+
+      case method === 'GET' && pathname === '/match':
+        ({ result, error }  = await getMatch(query));
         break;
 
       default:

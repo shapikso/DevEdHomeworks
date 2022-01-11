@@ -34,6 +34,11 @@ const config: Configuration = {
           files: "./src/js/*",
         },
       }),
+      new HtmlWebpackPlugin( {
+        filename: "descriptionFilm.html",
+        template: "./src/description.html",
+        chunks: [ 'page' ]
+    } ),
 ],
   output: {
     path: path.resolve(__dirname, "dist"),

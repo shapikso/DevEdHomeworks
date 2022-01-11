@@ -9,44 +9,48 @@
 </head>
 <body>
     <header class = "wheatherHeder">
-        <img class="headerImg" src = "https://openweathermap.org/themes/openweathermap/assets/img/logo_white_cropped.png"></img>
+        <img class="headerImg" src = "https://upl.ua/images/logo-horizontal-en.png"></img>
+        <select class="selector" id = "season">
+          </select>
+        <select class="selector" id = "league">
+            <option value = "602">Premier League</option>
+            <option value = "603">Persha Liga</option>
+          </select>
     </header>
-    <div class="hidden congratulation">
-        <h1>You are singed up</h1>
-    </div>
+    
     <main id="main">
-        
-        <form class="form frosted-glass-effect" id="form-signup">
-            <div class="fields">
-                <div class="input-wrapper">
-                    <label for="signup__firstname" class="input-wrapper__label">First name:</label>
-                    <input id="signup__firstname" type="text" name="firstname" class="input-wrapper__input input-name input-register" placeholder="Enter your first name" autocomplete="off">
+        <div class="cardWrapper">
+            
+        </div>
+    </main>
+    <script type="text/template" id="seasonTemplate">
+        <option value = "{{value}}"> {{name}} </option>
+    </script>
+    <script type="text/template" id="matchTemplate">
+        <div class="mycard" >
+            <div class="card" id="{{matchId}}">
+                <div class="teamA">
+                    <h5>{{firstComand}}</h5>
                 </div>
-                <div class="input-wrapper">
-                    <label for="signup__lastname" class="input-wrapper__label">Last name:</label>
-                    <input id="signup__lastname" type="text" name="lastname"  class="input-wrapper__input input-name input-register"
-                        placeholder="Enter your last name" autocomplete="off">
+                <div class="teamB">
+                    <h5>{{secondComand}}</h5>
+                </div>	
+            </div>
+            <div class="footer">
+                <div class="campo flex">
+                    <p>Score</p>
                 </div>
-                <div class="input-wrapper">
-                    <label for="signup__login" class="input-wrapper__label">Login:</label>
-                    <input id="signup__login" type="text" name="login" class="input-wrapper__input input-login input-register"
-                        placeholder="Enter your login" autocomplete="off">
-                </div>
-                <div class="input-wrapper">
-                    <label for="signup__password" class="input-wrapper__label">Phone:</label>
-                    <input id="signup__password"  type="text" name="phone"
-                        class="input-wrapper__input input-password input-register" placeholder="Enter your phone"
-                        autocomplete="off">
-                </div>
-                <div class="input-wrapper">
-                    <label for="signup__password" class="input-wrapper__label">Adress:</label>
-                    <textarea class="area" id="agress_area"></textarea>
+                <div class="score">
+                    <form action="">
+                        <img src="{{firstLogo}}" alt="" height="50">
+                        <input type="text" placeholder="{{firstScore}}" readonly>
+                        <div class="colon">:</div>
+                        <input type="text" placeholder="{{secondScore}}" readonly>
+                        <img src="{{secondLogo}}" alt="" height="50">
+                    </form>
                 </div>
             </div>
-            <button type="" class="basic-btn" id="sign-up-button">Sign up</button>
-        </form>
-    </main>
-    <footer class="wheatherFooter">
-    </footer>
+        </div>
+    </script>
 </body>
 </html>

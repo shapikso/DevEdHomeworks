@@ -1,5 +1,4 @@
 import { createServer, IncomingMessage, ServerResponse } from 'http';
-require('./database/pgdp.js')
 const {routs} = require('./router/router')
 const server = createServer(function (req: IncomingMessage, res: ServerResponse) { 
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -11,7 +10,7 @@ const server = createServer(function (req: IncomingMessage, res: ServerResponse)
     return res.end(); 
   }
 
-  const buffer: object[] = [];
+  const buffer: Buffer[] = [];
   req.on('data', (chunk) => {
     buffer.push(chunk);
   })

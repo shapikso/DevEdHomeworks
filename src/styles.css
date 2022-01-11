@@ -5,8 +5,10 @@
 }
 .wheatherHeder{
     height: 70px;
+    display: flex;
     background-color: #48484a;
     padding: 20px;
+    justify-content: space-around;
     align-items: center;
 }
 .headerImg{
@@ -21,79 +23,340 @@ main{
     height: 80%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 30px;
 }
 .selector{
-    margin-top: 20px;
     height: 45px;
     width: 300px;
     padding: 12px 24px;
     font-size: 18px;
 }
-.cityName{
-    font-size: 24px;
-    text-align: center;
-}
-.mainInfo {
-    margin-top: 20px;
-    display: flex;
-}
-.weather {
-    margin-top: 150px;
-    width: 300px;
-    border: solid;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.329);
-}
-.tempNow {
-    font-size: 64px;
-}
-.tempFeel {
-    margin-top: 10px;
-    font-size: 15px;
-}
-.image{
-    align-items: center;
-    margin-top: -10px;
-}
-.form {
-    font-size: 20px;
-    margin-top: 200px;
-    padding: 20px;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-.fields {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
- .input-wrapper{
-    justify-content: space-between;
-    display: flex;
- }
- textarea{
-    max-height: 100px;
-    max-width: 180px;
- }
- .err {
-    border-color: red;
- }
- .congratulation {
-     position: absolute;
-     background-color: rgba(0, 0, 0, 0.602);
-     height: 854px;
-     width: 100%;
-     text-align: center;
-     color: rgb(255, 255, 255);
-     
- }
- h1{
-     margin-top: 100px;
- }
  .hidden {
      display: none;
  }
+ @media (min-width: 725px){
+    .teamB > img {
+        bottom:0;
+    }
+      
+  }
+  
+  .cardContainer {
+      display:flex;
+      width:100%;
+      border: 2pt solid black;
+  }
+  
+  .card {
+    position: relative;
+    width: 270px;
+    height: 221px;
+    max-width: 650px;
+    margin: 15px auto;
+    box-shadow: 0.3em 0.3em 0.3em grey;   
+  }
+  
+  .card:before {
+      position: absolute;
+      content:"";
+      width:90%;
+      height:50px;
+      background:lightgrey;
+      top:-10px;
+      right:0;
+      left:0;
+      margin:auto;
+      z-index:-1;
+  }
+  
+  .card:after {
+      position: absolute;
+      content:"";
+      width:95%;
+      height:50px;
+      background:grey;
+      top:-6px;
+      right:0;
+      left:0;
+      margin:auto;
+      z-index:-1;
+  }
+  
+  .teamA {
+      font-family: 'Graduate', cursive;
+      font-size:35px;
+      position:absolute;
+      width:100%;
+      height:100%;
+      background:#D30145;
+      top:0;
+      -webkit-clip-path: polygon(0 0%, 100% 0, 100% 35%, 0 70%);
+      clip-path: polygon(0 0%, 100% 0, 100% 35%, 0 70%);
+  
+  }
+  
+  .teamB {
+      font-family: 'Graduate', cursive;
+      font-size:35px;
+      position:absolute;
+      width:100%;
+      height:100%;
+      background:white; /* 232425 */
+      top:0;
+      -webkit-clip-path: polygon(0 100%, 100% 100%, 100% 35%, 0 70%);
+      clip-path: polygon(0 100%, 100% 100%, 100% 35%, 0 70%);
+  
+  }
+  
+  .teamB > h5 {
+      color:black;
+      position:absolute;
+      bottom:0;
+      left:0;
+      margin:10px;
+  }
+  
+  .teamB > img {
+      position:absolute;
+      bottom:0;
+      right:0;
+      z-index:3;
+      width:60%;
+      
+      
+  }
+  .teamA > img {
+      position:absolute;
+      top:0;
+      left:0;
+      z-index:3;
+      width:50%;
+      
+      
+  }
+  
+  .teamA > h5 {
+      color:white;
+      position:absolute;
+      top:0;
+      right:0;
+      margin:10px;
+  }
+  
+  .flex{
+      display : flex;
+      align-items: center;
+      justify-content: center;
+      
+  }
+  
+  .f1 {
+      flex:1 !important;
+  }
+  
+  .vs {
+      z-index:2;
+      position:absolute;
+      top:50%;
+      left:50%;
+      margin-left:-40px;
+      margin-top:-80px;
+  }
+  
+  .vs > img {
+      width:50%;
+  }
+  
+  .pronostico {
+      padding:1px;
+      height:100%;
+      display:flex;
+  }
+  
+  .pronostico > * {
+      flex:1;
+      top:0;
+      position:relative;
+  }
+  
+  .pronostico > input {
+      
+      height:25px;
+      border-radius:25px;
+      padding-bottom:1%;
+      text-align:center;
+      font-family:'Graduate', cursive;
+  }
+  
+  .pronostico > h3 {
+      color: white;
+      top:0;
+      position:relative;
+      width:10px;
+      height:100%;
+      margin:1px;
+      text-align:center;
+  }
+  
+  .logo1 > img{
+      height:100%;
+  }
+  
+  .logo2 > img{
+      height:100%;
+  }
+  
+  .footer {
+      position:relative;
+      width:270px;
+      margin:auto;
+      background:#232425;
+      border-radius:10px;
+      display:flex;
+      flex-direction: column;
+      
+  }
+  
+  .field > p {
+      font-family: 'Graduate', cursive;
+      color: white;
+      padding-left:10px;
+      top:-10px;
+      position:absolute;
+  }
+  
+  .campo {
+      font-family: 'Graduate', cursive;
+      color:white;
+  }
+  
+  .word { 
+      font-family: 'Graduate', cursive;
+      position:relative;
+      color:grey;
+      flex:1;
+      height:20px;
+      padding:10px;
+      
+  }
+
+  .lightgrey {
+      color:lightgrey;
+  }
+  
+  span.up {
+      color:lightgrey;
+  }
+  
+  
+  .cardWrapper {
+    height: 100%;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}     
+  
+  .played {
+      flex:1;
+      cursor:pointer;
+      display:flex;
+      flex-align:center;
+      
+  }
+  
+  .field {
+      flex:1;
+  }
+  
+  .line {
+      height:30px;
+      width:1px;
+      border-right:1.5pt solid white;
+      top:-8px;
+      position:relative;  
+  }
+  
+  .roll {
+    animation: roll 2s forwards;
+  }
+  
+  .rolls {
+    animation: rolls 2s forwards;
+  }
+  
+  .rollt {
+    animation: rollt 2s forwards;
+  }
+  
+  .apostado:after { 
+      position:absolute;
+          z-index:3; 
+          top:-60px;
+          right:0;
+          left:0;
+          bottom:0;
+          content: "LISTO";
+          text-align: center;
+          background:#232425;
+          height:35px;
+          padding-top:15px;
+          animation: bet 2s 2s forwards;
+  
+  }
+  
+  .apostado {
+      overflow:hidden;
+  }
+  
+  @keyframes bet {
+      0% {
+          height:0;
+      }
+      
+      100% {
+          top:-10px;
+          color:#D30145;
+      }
+  }
+  
+  .red {
+      background:red;
+  }
+  
+  .colon {
+      color:white;
+      font-size:30px;
+  }
+  
+  .score {
+      padding:10px;
+      position:relative;
+      display:flex;
+      flex-direction:center;
+      float:left;
+  }
+  
+  .score > form {
+      flex:1;
+      display:flex;
+      width:100%;
+  }
+  
+  .score > * {
+      flex:1;
+  }
+  
+  .score > form > * {
+      flex:1;
+      
+  }
+  
+  .score > form > input{
+      border-radius:20px;
+      height:70%;
+      text-align:center;
+      font-family: 'Graduate', cursive;
+      font-size:20px;
+      width:50px;
+  }

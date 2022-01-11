@@ -1,16 +1,9 @@
 import Joi from "joi";
 
-exports.userValidator = Joi.object().keys({
-  name: Joi.string().required(),
-  surname: Joi.string().required(),
-  password: Joi.string().required(),
-  email: Joi.string().email().required(),
-  created_at: Joi.date().timestamp('javascript').default(new Date()),
-  updated_at: Joi.date().timestamp('javascript').default(new Date())
+export const matchesValidation = Joi.object().keys({
+  seasonId: Joi.number().required()
 });
 
-exports.userGetValidator = Joi.object().keys({
-  password: Joi.string().required(),
-  email: Joi.string().email().required()
+export const matchValidation = Joi.object().keys({
+  matchId: Joi.number().required()
 });
-

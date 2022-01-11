@@ -1,87 +1,86 @@
 import axios from "../../node_modules/axios/index";
 import "../styles.css";
+import { TMatch, TSeasons } from "./type";
 require("babel-core/register");
 require("babel-polyfill");
 
-import { validationName,validationSurname,validationEmail,validationPhone} from "./helper"
+const seasonNames = <HTMLInputElement>document.querySelector('#season');
+const matchElement = <HTMLElement>document.querySelector('.cardWrapper');
+const seasonTemplate = (<HTMLElement>document.querySelector('#seasonTemplate')).innerHTML;
+const matchTemplate = (<HTMLElement>document.querySelector('#matchTemplate')).innerHTML;
+const openData = <HTMLElement>document.querySelector('.main');
 
-const submite = <HTMLInputElement>document.getElementById("sign-up-button");
+function htmlToElement(html : string) {
+    const template: HTMLTemplateElement = document.createElement("template");
+    html = html.trim();
+    template.innerHTML = html;
+    return template.content;
+  }
 
-const firstName = <HTMLInputElement>document.querySelector('#signup__firstname');
-const lastName = <HTMLInputElement>document.querySelector('#signup__lastname');
-const email = <HTMLInputElement>document.querySelector('#signup__login');
-const phone = <HTMLInputElement>document.querySelector('#signup__password');
-const adress = <HTMLInputElement>document.querySelector('#agress_area');
-const congratulation = <HTMLInputElement>document.querySelector('.congratulation');
-
-submite.addEventListener('click', (event) => {
-    event.preventDefault();
-    submitForm((firstName).value,(lastName).value,(email).value,(<HTMLInputElement>phone).value,(<HTMLInputElement>adress).value);
-
+  seasonNames.addEventListener('change', (event) => {
+    getMatches(+(<HTMLOptionElement>event.target).value);
 })
 
+async function getUsers(): Promise<void> {
+    const response = await axios.get('http://localhost:5000/seasons');
+    const data :TSeasons[] = response.data
+    console.log(response.data)
+    data.forEach(element => {
+        addTask(element);
+    });
+    //http://localhost:5000/seasons
+}
+async function getMatches(id:number): Promise<void> {
+    const response = await axios.get(`http://localhost:5000/matches?seasonId=${id}`);
+    const data :TMatch[] = response.data
+    console.log(response.data)
+    data.forEach(element => {
+        addMatch(element);
+    });
+    //http://localhost:5000/seasons
+}
 
-async function submitForm(name:string,surname:string,email:string,phone:string,adress:string) {
-    try {
-        const response = await axios.post('http://localhost:5000/create-user', {
-            "name" : name,
-            "surname": surname,
-            "email": email,
-            "phone": phone,
-            "adress": adress
-    })
-        if(response.status === 201) congratulation.classList.remove('hidden')
-    } catch (error) {
-        alert('user not created');
+function addTask(season: TSeasons) {
+    const {season_id: id, name } = season;
+    if(seasonTemplate){
+        const html: string = seasonTemplate
+        .replace("{{name}}", name)
+        .replace("{{value}}", id.toString());
+        const newTaskEl = htmlToElement(html);
+        if (newTaskEl && seasonNames){
+            seasonNames.appendChild(newTaskEl);
+        }
+    }
+  }
+function addMatch(match: TMatch) {
+    const {match_id:id,home_team:{name:nameFirst, logo:logoFirst}, away_team:{name:nameSecond, logo:logoSecond}, stats: {home_score:firstScore,away_score:secondScore} } = match;
+    if(matchTemplate){
+        const html: string = matchTemplate
+        .replace("{{matchId}}", id.toString())
+        .replace("{{firstComand}}", nameFirst)
+        .replace("{{firstLogo}}", logoFirst)
+        .replace("{{secondComand}}", nameSecond)
+        .replace("{{secondLogo}}", logoSecond)
+        .replace("{{firstScore}}", firstScore.toString())
+        .replace("{{secondScore}}", secondScore.toString());
+        const newTaskEl = htmlToElement(html);
+        if (newTaskEl && matchElement){
+            matchElement.appendChild(newTaskEl);
+        }
+    }
+  }
+getUsers();
+
+matchElement.addEventListener('click', openFilmCard )
+
+function openFilmCard(event:MouseEvent):void {
+    console.log((<HTMLElement>(<HTMLElement>event.target).parentElement));
+    if ((<HTMLElement>(<HTMLElement>event.target).parentElement).classList.contains('card')) {
+        
+        const matchId = Number((<HTMLElement>(<HTMLElement>event.target).parentElement).id);
+        window.open(`./description.html#${matchId}`);
     }
 }
- 
-firstName.addEventListener('blur',() => {
-  const {validErr} = validationName((<HTMLInputElement>firstName).value)
-  if(validErr) {
-    firstName.classList.add('err')
-    submite.disabled = true;
-  } else {
-    firstName.classList.remove('err');
-    submite.disabled = false;
-  }
-})
-
-lastName.addEventListener('blur',() => {
-    const {validErr} = validationSurname((<HTMLInputElement>lastName).value)
-    if(validErr) {
-        lastName.classList.add('err');
-        submite.disabled = true;
-    } else{
-        lastName.classList.remove('err');
-        submite.disabled = false;
-    }
-  })
-
-  email.addEventListener('blur',() => {
-    const {validErr} = validationEmail((<HTMLInputElement>email).value)
-    if(validErr) {
-        email.classList.add('err');
-        submite.disabled = true;
-    } else{
-        email.classList.remove('err');
-        submite.disabled = false;
-    }
-  })
-
-  phone.addEventListener('blur',() => {
-    const {validErr} = validationPhone((<HTMLInputElement>phone).value)
-    if(validErr) {
-        phone.classList.add('err')
-        submite.disabled = true;
-    } else{
-        phone.classList.remove('err')
-        submite.disabled = false;
-    }
-  })
-
-
-  
 
     
 
